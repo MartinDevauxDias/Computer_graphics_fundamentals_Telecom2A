@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/tpSubdiv.dir/src/main.cpp.o CMakeFiles/tpSubdiv.dir/src/Mesh.cpp.o CMakeFiles/tpSubdiv.dir/src/ShaderProgram.cpp.o -o tpSubdiv  dep/glad/libglad.a dep/glfw/src/libglfw3.a -ldl -Wl,-Bstatic -lrt -Wl,-Bdynamic -lm -ldl -lX11 

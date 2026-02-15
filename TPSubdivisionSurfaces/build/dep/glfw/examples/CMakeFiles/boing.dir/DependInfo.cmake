@@ -1,0 +1,24 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c" "dep/glfw/examples/CMakeFiles/boing.dir/__/deps/glad_gl.c.o" "gcc" "dep/glfw/examples/CMakeFiles/boing.dir/__/deps/glad_gl.c.o.d"
+  "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/boing.c" "dep/glfw/examples/CMakeFiles/boing.dir/boing.c.o" "gcc" "dep/glfw/examples/CMakeFiles/boing.dir/boing.c.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

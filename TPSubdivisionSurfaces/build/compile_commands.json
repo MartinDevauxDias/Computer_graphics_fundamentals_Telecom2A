@@ -1,0 +1,548 @@
+[
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build",
+  "command": "/usr/bin/c++  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glm/glm/..\" -std=gnu++11 -o CMakeFiles/tpSubdiv.dir/src/main.cpp.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/main.cpp\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/main.cpp",
+  "output": "CMakeFiles/tpSubdiv.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build",
+  "command": "/usr/bin/c++  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glm/glm/..\" -std=gnu++11 -o CMakeFiles/tpSubdiv.dir/src/Mesh.cpp.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/Mesh.cpp\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/Mesh.cpp",
+  "output": "CMakeFiles/tpSubdiv.dir/src/Mesh.cpp.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build",
+  "command": "/usr/bin/c++  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glm/glm/..\" -std=gnu++11 -o CMakeFiles/tpSubdiv.dir/src/ShaderProgram.cpp.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/ShaderProgram.cpp\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/src/ShaderProgram.cpp",
+  "output": "CMakeFiles/tpSubdiv.dir/src/ShaderProgram.cpp.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glad",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/include\"  -o CMakeFiles/glad.dir/src/glad.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/src/glad.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glad/src/glad.c",
+  "output": "dep/glad/CMakeFiles/glad.dir/src/glad.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/context.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/context.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/context.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/context.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/init.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/init.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/init.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/init.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/input.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/input.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/input.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/input.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/monitor.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/monitor.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/monitor.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/monitor.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/vulkan.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/vulkan.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/vulkan.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/window.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/window.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/window.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/window.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/x11_init.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_init.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_init.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/x11_monitor.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_monitor.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_monitor.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/x11_window.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_window.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/x11_window.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/xkb_unicode.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/xkb_unicode.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/xkb_unicode.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/posix_time.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/posix_time.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/posix_time.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/posix_thread.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/posix_thread.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/posix_thread.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/glx_context.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/glx_context.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/glx_context.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/egl_context.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/egl_context.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/egl_context.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -Wdeclaration-after-statement -o CMakeFiles/glfw.dir/osmesa_context.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/osmesa_context.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/osmesa_context.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src",
+  "command": "/usr/bin/cc -D_GLFW_USE_CONFIG_H -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/src\" -std=gnu99 -fPIC -Wall -o CMakeFiles/glfw.dir/linux_joystick.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/linux_joystick.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/src/linux_joystick.c",
+  "output": "dep/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/boing.dir/boing.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/boing.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/boing.c",
+  "output": "dep/glfw/examples/CMakeFiles/boing.dir/boing.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/boing.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/boing.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/gears.dir/gears.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/gears.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/gears.c",
+  "output": "dep/glfw/examples/CMakeFiles/gears.dir/gears.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/gears.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/gears.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/heightmap.dir/heightmap.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/heightmap.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/heightmap.c",
+  "output": "dep/glfw/examples/CMakeFiles/heightmap.dir/heightmap.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/heightmap.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/heightmap.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/offscreen.dir/offscreen.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/offscreen.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/offscreen.c",
+  "output": "dep/glfw/examples/CMakeFiles/offscreen.dir/offscreen.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/offscreen.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/offscreen.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/particles.dir/particles.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/particles.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/particles.c",
+  "output": "dep/glfw/examples/CMakeFiles/particles.dir/particles.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/particles.dir/__/deps/tinycthread.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c",
+  "output": "dep/glfw/examples/CMakeFiles/particles.dir/__/deps/tinycthread.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/particles.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/examples/CMakeFiles/particles.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/particles.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/particles.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/sharing.dir/sharing.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/sharing.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/sharing.c",
+  "output": "dep/glfw/examples/CMakeFiles/sharing.dir/sharing.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/sharing.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/sharing.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/simple.dir/simple.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/simple.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/simple.c",
+  "output": "dep/glfw/examples/CMakeFiles/simple.dir/simple.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/simple.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/simple.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/splitview.dir/splitview.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/splitview.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/splitview.c",
+  "output": "dep/glfw/examples/CMakeFiles/splitview.dir/splitview.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/splitview.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/splitview.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/wave.dir/wave.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/wave.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/examples/wave.c",
+  "output": "dep/glfw/examples/CMakeFiles/wave.dir/wave.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/examples",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/wave.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/examples/CMakeFiles/wave.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/clipboard.dir/clipboard.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/clipboard.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/clipboard.c",
+  "output": "dep/glfw/tests/CMakeFiles/clipboard.dir/clipboard.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/clipboard.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/clipboard.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/clipboard.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/clipboard.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/events.dir/events.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/events.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/events.c",
+  "output": "dep/glfw/tests/CMakeFiles/events.dir/events.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/events.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/events.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/events.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/events.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/msaa.dir/msaa.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/msaa.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/msaa.c",
+  "output": "dep/glfw/tests/CMakeFiles/msaa.dir/msaa.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/msaa.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/msaa.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/msaa.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/msaa.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/glfwinfo.dir/glfwinfo.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/glfwinfo.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/glfwinfo.c",
+  "output": "dep/glfw/tests/CMakeFiles/glfwinfo.dir/glfwinfo.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/glfwinfo.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/glfwinfo.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/glfwinfo.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/glfwinfo.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/glfwinfo.dir/__/deps/glad_vulkan.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_vulkan.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_vulkan.c",
+  "output": "dep/glfw/tests/CMakeFiles/glfwinfo.dir/__/deps/glad_vulkan.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/iconify.dir/iconify.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/iconify.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/iconify.c",
+  "output": "dep/glfw/tests/CMakeFiles/iconify.dir/iconify.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/iconify.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/iconify.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/iconify.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/iconify.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/monitors.dir/monitors.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/monitors.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/monitors.c",
+  "output": "dep/glfw/tests/CMakeFiles/monitors.dir/monitors.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/monitors.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/monitors.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/monitors.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/monitors.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/reopen.dir/reopen.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/reopen.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/reopen.c",
+  "output": "dep/glfw/tests/CMakeFiles/reopen.dir/reopen.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/reopen.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/reopen.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/cursor.dir/cursor.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/cursor.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/cursor.c",
+  "output": "dep/glfw/tests/CMakeFiles/cursor.dir/cursor.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/cursor.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/cursor.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/empty.dir/empty.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/empty.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/empty.c",
+  "output": "dep/glfw/tests/CMakeFiles/empty.dir/empty.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/empty.dir/__/deps/tinycthread.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c",
+  "output": "dep/glfw/tests/CMakeFiles/empty.dir/__/deps/tinycthread.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/empty.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/empty.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/gamma.dir/gamma.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/gamma.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/gamma.c",
+  "output": "dep/glfw/tests/CMakeFiles/gamma.dir/gamma.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/gamma.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/gamma.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/icon.dir/icon.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/icon.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/icon.c",
+  "output": "dep/glfw/tests/CMakeFiles/icon.dir/icon.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/icon.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/icon.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/inputlag.dir/inputlag.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/inputlag.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/inputlag.c",
+  "output": "dep/glfw/tests/CMakeFiles/inputlag.dir/inputlag.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/inputlag.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/inputlag.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/inputlag.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/inputlag.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/joysticks.dir/joysticks.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/joysticks.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/joysticks.c",
+  "output": "dep/glfw/tests/CMakeFiles/joysticks.dir/joysticks.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/joysticks.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/joysticks.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/opacity.dir/opacity.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/opacity.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/opacity.c",
+  "output": "dep/glfw/tests/CMakeFiles/opacity.dir/opacity.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/opacity.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/opacity.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/tearing.dir/tearing.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/tearing.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/tearing.c",
+  "output": "dep/glfw/tests/CMakeFiles/tearing.dir/tearing.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/tearing.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/tearing.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/threads.dir/threads.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/threads.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/threads.c",
+  "output": "dep/glfw/tests/CMakeFiles/threads.dir/threads.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/threads.dir/__/deps/tinycthread.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/tinycthread.c",
+  "output": "dep/glfw/tests/CMakeFiles/threads.dir/__/deps/tinycthread.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/threads.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/threads.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/timeout.dir/timeout.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/timeout.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/timeout.c",
+  "output": "dep/glfw/tests/CMakeFiles/timeout.dir/timeout.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/timeout.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/timeout.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/title.dir/title.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/title.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/title.c",
+  "output": "dep/glfw/tests/CMakeFiles/title.dir/title.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/title.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/title.dir/__/deps/glad_gl.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/triangle-vulkan.dir/triangle-vulkan.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/triangle-vulkan.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/triangle-vulkan.c",
+  "output": "dep/glfw/tests/CMakeFiles/triangle-vulkan.dir/triangle-vulkan.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/triangle-vulkan.dir/__/deps/glad_vulkan.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_vulkan.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_vulkan.c",
+  "output": "dep/glfw/tests/CMakeFiles/triangle-vulkan.dir/__/deps/glad_vulkan.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/windows.dir/windows.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/windows.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/tests/windows.c",
+  "output": "dep/glfw/tests/CMakeFiles/windows.dir/windows.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/windows.dir/__/deps/getopt.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/getopt.c",
+  "output": "dep/glfw/tests/CMakeFiles/windows.dir/__/deps/getopt.c.o"
+},
+{
+  "directory": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/build/dep/glfw/tests",
+  "command": "/usr/bin/cc  -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps\" -I\"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/include\" -std=gnu99 -o CMakeFiles/windows.dir/__/deps/glad_gl.c.o -c \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c\"",
+  "file": "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Computer graphics/TPSubdivisionSurfaces/dep/glfw/deps/glad_gl.c",
+  "output": "dep/glfw/tests/CMakeFiles/windows.dir/__/deps/glad_gl.c.o"
+}
+]
