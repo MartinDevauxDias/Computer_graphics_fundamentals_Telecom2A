@@ -11,13 +11,11 @@ out vec3 FragPos;
 out vec3 Normal;
 out vec3 vertexColor;
 out vec2 texCoord;
-out vec4 FragPosLightSpace;
 
 // Transformation matrices
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-uniform mat4 lightSpaceMatrix;
 
 void main()
 {
@@ -26,9 +24,6 @@ void main()
     
     // Normal in world space (using normal matrix)
     Normal = mat3(transpose(inverse(model))) * aNormal;
-    
-    // Position in light space for shadow mapping
-    FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
     
     // Position in clip space
     gl_Position = projection * view * vec4(FragPos, 1.0);

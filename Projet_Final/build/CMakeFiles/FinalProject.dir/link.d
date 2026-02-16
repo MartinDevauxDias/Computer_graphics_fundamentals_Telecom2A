@@ -16,6 +16,8 @@ FinalProject: \
   external/glad/libglad.a \
   /usr/lib/x86_64-linux-gnu/librt.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libdl.a \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so \
+  /usr/lib/x86_64-linux-gnu/libpthread.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libm.so \
@@ -77,6 +79,10 @@ external/glad/libglad.a:
 /usr/lib/x86_64-linux-gnu/librt.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libdl.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so:
+
+/usr/lib/x86_64-linux-gnu/libpthread.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 

@@ -388,4 +388,5 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: \
  /usr/include/c++/14/bits/locale_facets.tcc \
  /usr/include/c++/14/bits/basic_ios.tcc \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
- /usr/include/c++/14/bits/istream.tcc
+ /usr/include/c++/14/bits/istream.tcc \
+ /usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h

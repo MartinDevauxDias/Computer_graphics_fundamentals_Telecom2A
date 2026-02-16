@@ -29,6 +29,8 @@ public:
     // Release GPU resources
     void cleanup();
 
+    virtual ~Mesh() {}
+
     void computeBoundingSphere(glm::vec3 &center, float &radius) const;
     void computeAABB(glm::vec3 &min, glm::vec3 &max) const;
     void recomputeNormals();

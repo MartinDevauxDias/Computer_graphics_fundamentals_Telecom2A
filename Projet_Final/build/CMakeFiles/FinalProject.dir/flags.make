@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/external/glfw/include -I/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/external/glad/include -I/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src
 
-CXX_FLAGS = -O3 -DNDEBUG
+CXX_FLAGS = -O3 -DNDEBUG -fopenmp
 

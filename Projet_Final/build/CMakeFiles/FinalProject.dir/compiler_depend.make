@@ -1022,6 +1022,7 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: /home/martin/Documents/Telecom/2A/IG
   /usr/include/x86_64-linux-gnu/sys/types.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/float.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h \
@@ -2755,6 +2756,7 @@ CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o: /home/martin/Documents/Teleco
   /usr/include/x86_64-linux-gnu/sys/types.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/float.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h \
@@ -3381,8 +3383,10 @@ FinalProject: /lib/x86_64-linux-gnu/libc.so.6 \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  /usr/lib/x86_64-linux-gnu/libpthread.a \
   /usr/lib/x86_64-linux-gnu/librt.a \
   CMakeFiles/FinalProject.dir/src/Error.cpp.o \
   CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o \
@@ -3410,6 +3414,8 @@ CMakeFiles/FinalProject.dir/src/Error.cpp.o:
 /usr/lib/x86_64-linux-gnu/librt.a:
 
 /usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
 
@@ -3510,6 +3516,8 @@ CMakeFiles/FinalProject.dir/src/mesh.cpp.o:
 /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
+
+/usr/lib/x86_64-linux-gnu/libpthread.a:
 
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
@@ -3628,6 +3636,8 @@ CMakeFiles/FinalProject.dir/src/stb_image.cpp.o:
 /usr/include/glm/ext/quaternion_geometric.hpp:
 
 /usr/include/glm/ext/matrix_float3x4.hpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h:
 
 /usr/include/glm/ext/matrix_float3x3_precision.hpp:
 

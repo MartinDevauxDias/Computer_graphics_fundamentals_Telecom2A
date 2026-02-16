@@ -1025,6 +1025,7 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o
  /usr/include/x86_64-linux-gnu/sys/types.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/float.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h
+ /usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h
@@ -2762,6 +2763,7 @@ CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o
  /usr/include/x86_64-linux-gnu/sys/types.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/float.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h
+ /usr/lib/gcc/x86_64-linux-gnu/14/include/omp.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h
@@ -3391,8 +3393,10 @@ FinalProject
  /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o
  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a
  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so
+ /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so
  /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so
  /usr/lib/x86_64-linux-gnu/libc_nonshared.a
+ /usr/lib/x86_64-linux-gnu/libpthread.a
  /usr/lib/x86_64-linux-gnu/librt.a
  /home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles/FinalProject.dir/src/Error.cpp.o
  /home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o

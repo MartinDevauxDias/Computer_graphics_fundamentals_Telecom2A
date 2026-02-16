@@ -22,12 +22,13 @@ add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 # Find the Required Packages (if Any -> OpenGL/Vulkan or Any)
 find_package(OpenGL REQUIRED)
+find_package(OpenMP REQUIRED)
 
 # Variable for the Libs to add to the Linkers
 if (WIN32)
 	set(LIBS glfw opengl32 glad)
 elseif (UNIX)
-	set(LIBS glfw GL glad)
+	set(LIBS glfw GL glad OpenMP::OpenMP_CXX)
 endif ()
 
 # Variables for Paths of External Libraries

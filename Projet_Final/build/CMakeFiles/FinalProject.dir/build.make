@@ -228,6 +228,8 @@ FinalProject: external/glfw/src/libglfw3.a
 FinalProject: external/glad/libglad.a
 FinalProject: /usr/lib/x86_64-linux-gnu/librt.a
 FinalProject: /usr/lib/x86_64-linux-gnu/libm.so
+FinalProject: /usr/lib/gcc/x86_64-linux-gnu/14/libgomp.so
+FinalProject: /usr/lib/x86_64-linux-gnu/libpthread.a
 FinalProject: CMakeFiles/FinalProject.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable FinalProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FinalProject.dir/link.txt --verbose=$(VERBOSE)
