@@ -69,24 +69,10 @@ include CMakeFiles/FinalProject.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FinalProject.dir/flags.make
 
-CMakeFiles/FinalProject.dir/src/Error.cpp.o: CMakeFiles/FinalProject.dir/flags.make
-CMakeFiles/FinalProject.dir/src/Error.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/Error.cpp
-CMakeFiles/FinalProject.dir/src/Error.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FinalProject.dir/src/Error.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/Error.cpp.o -MF CMakeFiles/FinalProject.dir/src/Error.cpp.o.d -o CMakeFiles/FinalProject.dir/src/Error.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/Error.cpp
-
-CMakeFiles/FinalProject.dir/src/Error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/src/Error.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/Error.cpp > CMakeFiles/FinalProject.dir/src/Error.cpp.i
-
-CMakeFiles/FinalProject.dir/src/Error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/Error.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/Error.cpp -o CMakeFiles/FinalProject.dir/src/Error.cpp.s
-
 CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/icosahedron.cpp
 CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o -MF CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o.d -o CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/icosahedron.cpp
 
 CMakeFiles/FinalProject.dir/src/icosahedron.cpp.i: cmake_force
@@ -100,7 +86,7 @@ CMakeFiles/FinalProject.dir/src/icosahedron.cpp.s: cmake_force
 CMakeFiles/FinalProject.dir/src/main.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/main.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/main.cpp
 CMakeFiles/FinalProject.dir/src/main.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FinalProject.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FinalProject.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/main.cpp.o -MF CMakeFiles/FinalProject.dir/src/main.cpp.o.d -o CMakeFiles/FinalProject.dir/src/main.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/main.cpp
 
 CMakeFiles/FinalProject.dir/src/main.cpp.i: cmake_force
@@ -114,7 +100,7 @@ CMakeFiles/FinalProject.dir/src/main.cpp.s: cmake_force
 CMakeFiles/FinalProject.dir/src/material.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/material.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/material.cpp
 CMakeFiles/FinalProject.dir/src/material.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FinalProject.dir/src/material.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FinalProject.dir/src/material.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/material.cpp.o -MF CMakeFiles/FinalProject.dir/src/material.cpp.o.d -o CMakeFiles/FinalProject.dir/src/material.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/material.cpp
 
 CMakeFiles/FinalProject.dir/src/material.cpp.i: cmake_force
@@ -128,7 +114,7 @@ CMakeFiles/FinalProject.dir/src/material.cpp.s: cmake_force
 CMakeFiles/FinalProject.dir/src/mesh.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/mesh.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/mesh.cpp
 CMakeFiles/FinalProject.dir/src/mesh.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FinalProject.dir/src/mesh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FinalProject.dir/src/mesh.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/mesh.cpp.o -MF CMakeFiles/FinalProject.dir/src/mesh.cpp.o.d -o CMakeFiles/FinalProject.dir/src/mesh.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/mesh.cpp
 
 CMakeFiles/FinalProject.dir/src/mesh.cpp.i: cmake_force
@@ -142,7 +128,7 @@ CMakeFiles/FinalProject.dir/src/mesh.cpp.s: cmake_force
 CMakeFiles/FinalProject.dir/src/object.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/object.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/object.cpp
 CMakeFiles/FinalProject.dir/src/object.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FinalProject.dir/src/object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FinalProject.dir/src/object.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/object.cpp.o -MF CMakeFiles/FinalProject.dir/src/object.cpp.o.d -o CMakeFiles/FinalProject.dir/src/object.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/object.cpp
 
 CMakeFiles/FinalProject.dir/src/object.cpp.i: cmake_force
@@ -152,6 +138,20 @@ CMakeFiles/FinalProject.dir/src/object.cpp.i: cmake_force
 CMakeFiles/FinalProject.dir/src/object.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/object.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/object.cpp -o CMakeFiles/FinalProject.dir/src/object.cpp.s
+
+CMakeFiles/FinalProject.dir/src/renderer.cpp.o: CMakeFiles/FinalProject.dir/flags.make
+CMakeFiles/FinalProject.dir/src/renderer.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/renderer.cpp
+CMakeFiles/FinalProject.dir/src/renderer.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FinalProject.dir/src/renderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/renderer.cpp.o -MF CMakeFiles/FinalProject.dir/src/renderer.cpp.o.d -o CMakeFiles/FinalProject.dir/src/renderer.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/renderer.cpp
+
+CMakeFiles/FinalProject.dir/src/renderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/src/renderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/renderer.cpp > CMakeFiles/FinalProject.dir/src/renderer.cpp.i
+
+CMakeFiles/FinalProject.dir/src/renderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/renderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/renderer.cpp -o CMakeFiles/FinalProject.dir/src/renderer.cpp.s
 
 CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/rigidsolver.cpp
@@ -167,10 +167,24 @@ CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/rigidsolver.cpp -o CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.s
 
+CMakeFiles/FinalProject.dir/src/scene.cpp.o: CMakeFiles/FinalProject.dir/flags.make
+CMakeFiles/FinalProject.dir/src/scene.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.cpp
+CMakeFiles/FinalProject.dir/src/scene.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/FinalProject.dir/src/scene.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/scene.cpp.o -MF CMakeFiles/FinalProject.dir/src/scene.cpp.o.d -o CMakeFiles/FinalProject.dir/src/scene.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.cpp
+
+CMakeFiles/FinalProject.dir/src/scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/src/scene.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.cpp > CMakeFiles/FinalProject.dir/src/scene.cpp.i
+
+CMakeFiles/FinalProject.dir/src/scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/scene.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.cpp -o CMakeFiles/FinalProject.dir/src/scene.cpp.s
+
 CMakeFiles/FinalProject.dir/src/shader.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/shader.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/shader.cpp
 CMakeFiles/FinalProject.dir/src/shader.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/FinalProject.dir/src/shader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/FinalProject.dir/src/shader.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/shader.cpp.o -MF CMakeFiles/FinalProject.dir/src/shader.cpp.o.d -o CMakeFiles/FinalProject.dir/src/shader.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/shader.cpp
 
 CMakeFiles/FinalProject.dir/src/shader.cpp.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/FinalProject.dir/src/shader.cpp.s: cmake_force
 CMakeFiles/FinalProject.dir/src/stb_image.cpp.o: CMakeFiles/FinalProject.dir/flags.make
 CMakeFiles/FinalProject.dir/src/stb_image.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/stb_image.cpp
 CMakeFiles/FinalProject.dir/src/stb_image.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/FinalProject.dir/src/stb_image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/FinalProject.dir/src/stb_image.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/stb_image.cpp.o -MF CMakeFiles/FinalProject.dir/src/stb_image.cpp.o.d -o CMakeFiles/FinalProject.dir/src/stb_image.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/stb_image.cpp
 
 CMakeFiles/FinalProject.dir/src/stb_image.cpp.i: cmake_force
@@ -195,30 +209,48 @@ CMakeFiles/FinalProject.dir/src/stb_image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/stb_image.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/stb_image.cpp -o CMakeFiles/FinalProject.dir/src/stb_image.cpp.s
 
+CMakeFiles/FinalProject.dir/src/window.cpp.o: CMakeFiles/FinalProject.dir/flags.make
+CMakeFiles/FinalProject.dir/src/window.cpp.o: /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.cpp
+CMakeFiles/FinalProject.dir/src/window.cpp.o: CMakeFiles/FinalProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/FinalProject.dir/src/window.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FinalProject.dir/src/window.cpp.o -MF CMakeFiles/FinalProject.dir/src/window.cpp.o.d -o CMakeFiles/FinalProject.dir/src/window.cpp.o -c /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.cpp
+
+CMakeFiles/FinalProject.dir/src/window.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/src/window.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.cpp > CMakeFiles/FinalProject.dir/src/window.cpp.i
+
+CMakeFiles/FinalProject.dir/src/window.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/src/window.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.cpp -o CMakeFiles/FinalProject.dir/src/window.cpp.s
+
 # Object files for target FinalProject
 FinalProject_OBJECTS = \
-"CMakeFiles/FinalProject.dir/src/Error.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/main.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/material.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/mesh.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/object.cpp.o" \
+"CMakeFiles/FinalProject.dir/src/renderer.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o" \
+"CMakeFiles/FinalProject.dir/src/scene.cpp.o" \
 "CMakeFiles/FinalProject.dir/src/shader.cpp.o" \
-"CMakeFiles/FinalProject.dir/src/stb_image.cpp.o"
+"CMakeFiles/FinalProject.dir/src/stb_image.cpp.o" \
+"CMakeFiles/FinalProject.dir/src/window.cpp.o"
 
 # External object files for target FinalProject
 FinalProject_EXTERNAL_OBJECTS =
 
-FinalProject: CMakeFiles/FinalProject.dir/src/Error.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/main.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/material.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/mesh.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/object.cpp.o
+FinalProject: CMakeFiles/FinalProject.dir/src/renderer.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.o
+FinalProject: CMakeFiles/FinalProject.dir/src/scene.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/shader.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/src/stb_image.cpp.o
+FinalProject: CMakeFiles/FinalProject.dir/src/window.cpp.o
 FinalProject: CMakeFiles/FinalProject.dir/build.make
 FinalProject: external/glfw/src/libglfw3.a
 FinalProject: external/glad/libglad.a
@@ -227,7 +259,7 @@ FinalProject: /usr/lib/x86_64-linux-gnu/libm.so
 FinalProject: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
 FinalProject: /usr/lib/x86_64-linux-gnu/libpthread.a
 FinalProject: CMakeFiles/FinalProject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable FinalProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable FinalProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FinalProject.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

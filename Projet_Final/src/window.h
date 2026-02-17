@@ -16,10 +16,16 @@ public:
     unsigned int height = 800;
 
     // Camera state
-    float cameraDistance = 10.0f;
-    float cameraTheta = 0.0f;
-    float cameraPhi = 1.57f;
-    glm::vec3 cameraPos;
+    glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f, 10.0f);
+    glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+    glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f, 0.0f);
+    float yaw = -90.0f;
+    float pitch = 0.0f;
+
+    // Mouse state
+    float lastX;
+    float lastY;
+    bool firstMouse = true;
 
     // Input state
     bool wireframeMode = false;
@@ -32,18 +38,17 @@ public:
 
     bool shouldClose();
     void update(); // Swaps buffers and polls events
-    void processInput(Scene& currentScene);
-    void updateCamera();
+    void processInput(Scene& currentScene, float deltaTime);
 
     glm::mat4 getViewMatrix();
     glm::mat4 getProjectionMatrix();
 
 private:
-    float rotationSpeed = 0.05f;
-    float zoomSpeed = 0.5f;
+    float movementSpeed = 2.5f;
+    float mouseSensitivity = 0.1f;
 
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-    static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 };
 
 #endif // WINDOW_H

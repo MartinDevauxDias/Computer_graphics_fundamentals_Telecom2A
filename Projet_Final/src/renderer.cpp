@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <omp.h>
 #include <vector>
+#include <GLFW/glfw3.h>
 
 Renderer::Renderer(unsigned int w, unsigned int h)
     : rasterShader("src/vertex_shader.glsl", "src/fragment_shader.glsl"),
@@ -23,19 +24,22 @@ Renderer::~Renderer() {
     glDeleteBuffers(1, &objectSSBO);
 }
 
-void Renderer::render(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
+double Renderer::render(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, bool raytracingMode, bool wireframeMode) {
     glViewport(0, 0, screenWidth, screenHeight);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (raytracingMode) {
-        renderRaytraced(scene, view, projection, cameraPos);
+        return renderRaytraced(scene, view, projection, cameraPos);
     } else {
-        renderRaster(scene, view, projection, cameraPos);
+        renderRaster(scene, view, projection, cameraPos, wireframeMode);
+        return 0.0;
     }
 }
 
-void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
+void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, bool wireframeMode) {
+    glEnable(GL_DEPTH_TEST);
+    
     if (wireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -58,7 +62,9 @@ void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4
     }
 }
 
-void Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
+double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
+    glDisable(GL_DEPTH_TEST);
+    double prepStart = glfwGetTime();
     // 1. Prepare data for GPU
     std::vector<size_t> offsets(scene.objects.size() + 1);
     offsets[0] = 0;
@@ -67,7 +73,7 @@ void Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::m
     }
 
     size_t totalTris = offsets.back();
-    if (totalTris == 0) return;
+    if (totalTris == 0) return 0.0;
 
     std::vector<GPUTriangle> gpuTriangles(totalTris);
     std::vector<GPUObject> gpuObjects(scene.objects.size());
@@ -109,6 +115,8 @@ void Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::m
         gpuObjects[i] = { glm::vec4(bmin, reflect), glm::vec4(bmax, float(startIdx)), int(numTris) };
     }
 
+    double prepTime = glfwGetTime() - prepStart;
+
     // 2. Update SSBOs
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, triangleSSBO);
     glBufferData(GL_SHADER_STORAGE_BUFFER, gpuTriangles.size() * sizeof(GPUTriangle), gpuTriangles.data(), GL_DYNAMIC_DRAW);
@@ -135,6 +143,8 @@ void Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::m
     glBindVertexArray(quadVAO);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
+
+    return prepTime;
 }
 
 // --- Initialization Functions ---
@@ -168,8 +178,10 @@ void Renderer::initSSBOs() {
     glGenBuffers(1, &triangleSSBO);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, triangleSSBO);
     glBufferData(GL_SHADER_STORAGE_BUFFER, 0, NULL, GL_DYNAMIC_DRAW);
+
     glGenBuffers(1, &objectSSBO);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, objectSSBO);
     glBufferData(GL_SHADER_STORAGE_BUFFER, 0, NULL, GL_DYNAMIC_DRAW);
+
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 }

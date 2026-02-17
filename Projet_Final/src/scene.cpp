@@ -133,21 +133,3 @@ void PhysicsStackScene::processInput(GLFWwindow* window, const glm::vec3& camera
         rightMousePressed = false;
     }
 }
-
-void Scene::movementInput(GLFWwindow *window, bool wireframeMode, bool raytracingMode)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-    
-    // Visualization Toggles (G: Wireframe, F: Fill)
-    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-        wireframeMode = true;
-    if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-        wireframeMode = false;
-    
-    // Raytracing Toggle (R: Raytracing, T: Standard)
-    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
-        raytracingMode = true;
-    if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
-        raytracingMode = false;
-}

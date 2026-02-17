@@ -3,6 +3,7 @@
 #include <glm/gtx/norm.hpp>
 #include <algorithm>
 #include <omp.h>
+#include <iostream>
 
 RigidSolver::RigidSolver(glm::vec3 gravity, float floorY)
     : gravity(gravity), floorY(floorY) {}
@@ -27,6 +28,7 @@ static OBB getOBB(Object* obj) {
 }
 
 void RigidSolver::step(float deltaTime) {
+    
     // 1. Integrate Forces (Velocity) - Parallelized
     #pragma omp parallel for
     for (int i = 0; i < (int)objects.size(); ++i) {
@@ -70,9 +72,9 @@ void RigidSolver::step(float deltaTime) {
 }
 
 void RigidSolver::solve(float dt) {
-    const int iterations = 20; // Reverted to 20 for better performance
-    const float beta = 0.15f;  // Reverted to 0.15f
-    const float slop = 0.01f;  // Reverted to 0.01f
+    const int iterations = 20; 
+    const float beta = 0.15f;
+    const float slop = 0.01f;  
 
     // Pre-Step
     for (auto& c : constraints) {
@@ -295,6 +297,7 @@ void RigidSolver::detectCollisions() {
                 bool hit = check(obbA.axes[0]) && check(obbA.axes[1]) && check(obbA.axes[2]) && check(obbB.axes[0]) && check(obbB.axes[1]) && check(obbB.axes[2]);
                 if (hit) { for(int x=0; x<3; ++x) for(int y=0; y<3; ++y) if(!check(glm::cross(obbA.axes[x], obbB.axes[y]))) { hit = false; break; } }
                 if (hit) {
+                    std::cout << "DEBUG: Box-Box SAT collision detected between objects. Penetration: " << minP << std::endl;
                     auto sampleLocal = [&](Object* s, Object* t, glm::vec3 n, bool isS_A, std::vector<ContactConstraint>& constraints_list) {
                         glm::mat3 Rs = glm::toMat3(s->orientation);
                         glm::mat3 Rt_inv = glm::transpose(glm::toMat3(t->orientation));

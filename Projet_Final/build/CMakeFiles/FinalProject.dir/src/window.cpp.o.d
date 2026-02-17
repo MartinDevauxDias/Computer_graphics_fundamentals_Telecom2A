@@ -1,6 +1,7 @@
-CMakeFiles/FinalProject.dir/src/main.cpp.o: \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/main.cpp \
+CMakeFiles/FinalProject.dir/src/window.cpp.o: \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.cpp \
  /usr/include/stdc-predef.h \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.h \
  /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/external/glad/include/glad/glad.h \
  /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/external/glad/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
@@ -21,7 +22,6 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/external/glfw/include/GLFW/glfw3.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/shader.h \
  /usr/include/glm/glm.hpp /usr/include/glm/detail/_fixes.hpp \
  /usr/include/c++/13/cmath /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -219,19 +219,77 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: \
  /usr/include/glm/detail/type_half.hpp \
  /usr/include/glm/detail/type_half.inl /usr/include/glm/integer.hpp \
  /usr/include/glm/detail/func_integer.inl \
- /usr/include/glm/gtc/type_ptr.hpp /usr/include/glm/gtc/quaternion.hpp \
+ /usr/include/glm/gtc/matrix_transform.hpp \
+ /usr/include/glm/ext/matrix_projection.hpp \
  /usr/include/glm/gtc/constants.hpp \
  /usr/include/glm/ext/scalar_constants.hpp \
  /usr/include/glm/ext/scalar_constants.inl \
  /usr/include/glm/gtc/constants.inl \
- /usr/include/glm/gtc/matrix_transform.hpp \
- /usr/include/glm/ext/matrix_projection.hpp \
  /usr/include/glm/ext/matrix_projection.inl \
  /usr/include/glm/ext/matrix_clip_space.hpp \
  /usr/include/glm/ext/matrix_clip_space.inl \
  /usr/include/glm/ext/matrix_transform.hpp \
  /usr/include/glm/ext/matrix_transform.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.h \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/object.h \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/mesh.h \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
+ /usr/include/c++/13/bits/new_allocator.h /usr/include/c++/13/new \
+ /usr/include/c++/13/bits/exception.h \
+ /usr/include/c++/13/bits/memoryfwd.h \
+ /usr/include/c++/13/bits/stl_construct.h \
+ /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/ext/alloc_traits.h \
+ /usr/include/c++/13/bits/alloc_traits.h \
+ /usr/include/c++/13/bits/stl_vector.h \
+ /usr/include/c++/13/initializer_list \
+ /usr/include/c++/13/bits/stl_bvector.h \
+ /usr/include/c++/13/bits/functional_hash.h \
+ /usr/include/c++/13/bits/hash_bytes.h /usr/include/c++/13/bits/refwrap.h \
+ /usr/include/c++/13/bits/invoke.h \
+ /usr/include/c++/13/bits/stl_function.h \
+ /usr/include/c++/13/backward/binders.h \
+ /usr/include/c++/13/bits/range_access.h \
+ /usr/include/c++/13/bits/vector.tcc \
+ /usr/include/c++/13/bits/memory_resource.h \
+ /usr/include/c++/13/bits/uses_allocator.h \
+ /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
+ /usr/include/c++/13/string /usr/include/c++/13/bits/stringfwd.h \
+ /usr/include/c++/13/bits/char_traits.h \
+ /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
+ /usr/include/wchar.h /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/c++/13/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
+ /usr/include/c++/13/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/13/iosfwd \
+ /usr/include/c++/13/cctype /usr/include/ctype.h \
+ /usr/include/c++/13/bits/ostream_insert.h \
+ /usr/include/c++/13/bits/cxxabi_forced.h \
+ /usr/include/c++/13/bits/basic_string.h /usr/include/c++/13/string_view \
+ /usr/include/c++/13/bits/string_view.tcc \
+ /usr/include/c++/13/ext/string_conversions.h /usr/include/c++/13/cstdlib \
+ /usr/include/c++/13/cstdio /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/c++/13/cerrno /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /usr/include/c++/13/bits/charconv.h \
+ /usr/include/c++/13/bits/basic_string.tcc \
+ /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/material.h \
+ /usr/include/glm/gtc/quaternion.hpp \
  /usr/include/glm/ext/vector_relational.hpp \
  /usr/include/glm/ext/vector_relational.inl \
  /usr/include/glm/detail/type_float.hpp \
@@ -253,89 +311,8 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: \
  /usr/include/glm/ext/quaternion_transform.inl \
  /usr/include/glm/gtc/quaternion.inl /usr/include/glm/gtc/epsilon.hpp \
  /usr/include/glm/detail/setup.hpp /usr/include/glm/gtc/epsilon.inl \
- /usr/include/glm/gtc/vec1.hpp /usr/include/glm/ext/vector_bool1.hpp \
- /usr/include/glm/ext/vector_bool1_precision.hpp \
- /usr/include/glm/ext/vector_float1.hpp \
- /usr/include/glm/ext/vector_float1_precision.hpp \
- /usr/include/glm/ext/vector_double1.hpp \
- /usr/include/glm/ext/vector_double1_precision.hpp \
- /usr/include/glm/ext/vector_int1.hpp \
- /usr/include/glm/ext/vector_int1_sized.hpp \
- /usr/include/glm/ext/vector_uint1.hpp \
- /usr/include/glm/ext/vector_uint1_sized.hpp /usr/include/c++/13/cstring \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/glm/gtc/type_ptr.inl /usr/include/c++/13/string \
- /usr/include/c++/13/bits/stringfwd.h \
- /usr/include/c++/13/bits/memoryfwd.h \
- /usr/include/c++/13/bits/char_traits.h \
- /usr/include/c++/13/bits/postypes.h /usr/include/c++/13/cwchar \
- /usr/include/wchar.h /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
- /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/c++/13/bits/allocator.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
- /usr/include/c++/13/bits/new_allocator.h /usr/include/c++/13/new \
- /usr/include/c++/13/bits/exception.h \
- /usr/include/c++/13/bits/localefwd.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
- /usr/include/c++/13/clocale /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/13/iosfwd \
- /usr/include/c++/13/cctype /usr/include/ctype.h \
- /usr/include/c++/13/bits/ostream_insert.h \
- /usr/include/c++/13/bits/cxxabi_forced.h \
- /usr/include/c++/13/bits/stl_function.h \
- /usr/include/c++/13/backward/binders.h \
- /usr/include/c++/13/bits/refwrap.h /usr/include/c++/13/bits/invoke.h \
- /usr/include/c++/13/bits/range_access.h \
- /usr/include/c++/13/initializer_list \
- /usr/include/c++/13/bits/basic_string.h \
- /usr/include/c++/13/ext/alloc_traits.h \
- /usr/include/c++/13/bits/alloc_traits.h \
- /usr/include/c++/13/bits/stl_construct.h /usr/include/c++/13/string_view \
- /usr/include/c++/13/bits/functional_hash.h \
- /usr/include/c++/13/bits/hash_bytes.h \
- /usr/include/c++/13/bits/string_view.tcc \
- /usr/include/c++/13/ext/string_conversions.h /usr/include/c++/13/cstdlib \
- /usr/include/c++/13/cstdio /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/c++/13/cerrno /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
- /usr/include/c++/13/bits/charconv.h \
- /usr/include/c++/13/bits/basic_string.tcc \
- /usr/include/c++/13/bits/memory_resource.h \
- /usr/include/c++/13/bits/uses_allocator.h \
- /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
- /usr/include/c++/13/unordered_map \
- /usr/include/c++/13/bits/unordered_map.h \
- /usr/include/c++/13/bits/hashtable.h \
- /usr/include/c++/13/bits/hashtable_policy.h \
- /usr/include/c++/13/ext/aligned_buffer.h \
- /usr/include/c++/13/bits/enable_special_members.h \
- /usr/include/c++/13/bits/node_handle.h \
- /usr/include/c++/13/bits/erase_if.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/object.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/mesh.h \
- /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
- /usr/include/c++/13/bits/stl_vector.h \
- /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/material.h \
  /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/gputypes.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/icosahedron.h \
  /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/rigidsolver.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/scene.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/renderer.h \
- /home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/src/window.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/ostream \
  /usr/include/c++/13/ios /usr/include/c++/13/exception \
  /usr/include/c++/13/bits/exception_ptr.h \
@@ -371,5 +348,4 @@ CMakeFiles/FinalProject.dir/src/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/omp.h
+ /usr/include/c++/13/bits/istream.tcc

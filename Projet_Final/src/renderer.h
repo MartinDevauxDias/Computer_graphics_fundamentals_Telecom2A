@@ -7,13 +7,10 @@
 
 class Renderer {
 public:
-    bool wireframeMode = false;
-    bool raytracingMode = false;
-
     Renderer(unsigned int screenWidth, unsigned int screenHeight);
     ~Renderer();
 
-    void render(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos);
+    double render(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, bool raytracingMode, bool wireframeMode);
 
 private:
     Shader rasterShader;
@@ -30,8 +27,8 @@ private:
     void initScreenQuad();
     void initSSBOs();
 
-    void renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos);
-    void renderRaytraced(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos);
+    void renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, bool wireframeMode);
+    double renderRaytraced(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos);
 };
 
 #endif // RENDERER_H

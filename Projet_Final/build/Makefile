@@ -226,30 +226,6 @@ glad/fast:
 	$(MAKE) $(MAKESILENT) -f external/glad/CMakeFiles/glad.dir/build.make external/glad/CMakeFiles/glad.dir/build
 .PHONY : glad/fast
 
-src/Error.o: src/Error.cpp.o
-.PHONY : src/Error.o
-
-# target to build an object file
-src/Error.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/Error.cpp.o
-.PHONY : src/Error.cpp.o
-
-src/Error.i: src/Error.cpp.i
-.PHONY : src/Error.i
-
-# target to preprocess a source file
-src/Error.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/Error.cpp.i
-.PHONY : src/Error.cpp.i
-
-src/Error.s: src/Error.cpp.s
-.PHONY : src/Error.s
-
-# target to generate assembly for a file
-src/Error.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/Error.cpp.s
-.PHONY : src/Error.cpp.s
-
 src/icosahedron.o: src/icosahedron.cpp.o
 .PHONY : src/icosahedron.o
 
@@ -370,6 +346,30 @@ src/object.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/object.cpp.s
 .PHONY : src/object.cpp.s
 
+src/renderer.o: src/renderer.cpp.o
+.PHONY : src/renderer.o
+
+# target to build an object file
+src/renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/renderer.cpp.o
+.PHONY : src/renderer.cpp.o
+
+src/renderer.i: src/renderer.cpp.i
+.PHONY : src/renderer.i
+
+# target to preprocess a source file
+src/renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/renderer.cpp.i
+.PHONY : src/renderer.cpp.i
+
+src/renderer.s: src/renderer.cpp.s
+.PHONY : src/renderer.s
+
+# target to generate assembly for a file
+src/renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/renderer.cpp.s
+.PHONY : src/renderer.cpp.s
+
 src/rigidsolver.o: src/rigidsolver.cpp.o
 .PHONY : src/rigidsolver.o
 
@@ -393,6 +393,30 @@ src/rigidsolver.s: src/rigidsolver.cpp.s
 src/rigidsolver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/rigidsolver.cpp.s
 .PHONY : src/rigidsolver.cpp.s
+
+src/scene.o: src/scene.cpp.o
+.PHONY : src/scene.o
+
+# target to build an object file
+src/scene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/scene.cpp.o
+.PHONY : src/scene.cpp.o
+
+src/scene.i: src/scene.cpp.i
+.PHONY : src/scene.i
+
+# target to preprocess a source file
+src/scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/scene.cpp.i
+.PHONY : src/scene.cpp.i
+
+src/scene.s: src/scene.cpp.s
+.PHONY : src/scene.s
+
+# target to generate assembly for a file
+src/scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/scene.cpp.s
+.PHONY : src/scene.cpp.s
 
 src/shader.o: src/shader.cpp.o
 .PHONY : src/shader.o
@@ -442,6 +466,30 @@ src/stb_image.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/stb_image.cpp.s
 .PHONY : src/stb_image.cpp.s
 
+src/window.o: src/window.cpp.o
+.PHONY : src/window.o
+
+# target to build an object file
+src/window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/window.cpp.o
+.PHONY : src/window.cpp.o
+
+src/window.i: src/window.cpp.i
+.PHONY : src/window.i
+
+# target to preprocess a source file
+src/window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/window.cpp.i
+.PHONY : src/window.cpp.i
+
+src/window.s: src/window.cpp.s
+.PHONY : src/window.s
+
+# target to generate assembly for a file
+src/window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FinalProject.dir/build.make CMakeFiles/FinalProject.dir/src/window.cpp.s
+.PHONY : src/window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -459,9 +507,6 @@ help:
 	@echo "... FinalProject"
 	@echo "... glad"
 	@echo "... glfw"
-	@echo "... src/Error.o"
-	@echo "... src/Error.i"
-	@echo "... src/Error.s"
 	@echo "... src/icosahedron.o"
 	@echo "... src/icosahedron.i"
 	@echo "... src/icosahedron.s"
@@ -477,15 +522,24 @@ help:
 	@echo "... src/object.o"
 	@echo "... src/object.i"
 	@echo "... src/object.s"
+	@echo "... src/renderer.o"
+	@echo "... src/renderer.i"
+	@echo "... src/renderer.s"
 	@echo "... src/rigidsolver.o"
 	@echo "... src/rigidsolver.i"
 	@echo "... src/rigidsolver.s"
+	@echo "... src/scene.o"
+	@echo "... src/scene.i"
+	@echo "... src/scene.s"
 	@echo "... src/shader.o"
 	@echo "... src/shader.i"
 	@echo "... src/shader.s"
 	@echo "... src/stb_image.o"
 	@echo "... src/stb_image.i"
 	@echo "... src/stb_image.s"
+	@echo "... src/window.o"
+	@echo "... src/window.i"
+	@echo "... src/window.s"
 .PHONY : help
 
 

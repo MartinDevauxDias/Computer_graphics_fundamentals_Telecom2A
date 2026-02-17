@@ -24,7 +24,6 @@ public:
 
     // Input handling is now virtual, to be overridden by derived scenes
     virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection);
-    virtual void movementInput(GLFWwindow *window, bool wireframeMode, bool raytracingMode);
 };
 
 
