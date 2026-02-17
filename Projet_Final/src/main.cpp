@@ -5,6 +5,7 @@
 #include "object.h"
 #include "icosahedron.h"
 #include "rigidsolver.h"
+#include "scene.h"
 
 #include <iostream>
 #include <cmath>
@@ -20,7 +21,7 @@ void processInput(GLFWwindow *window, RigidSolver& solver, std::vector<Object*>&
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 GLFWwindow *initializeGLFW();
 
-// Window settings
+// Window settings 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 800;
 
@@ -40,20 +41,6 @@ float timeAccumulator = 0.0f;
 
 bool wireframeMode = false;
 bool raytracingMode = false;
-
-struct GPUTriangle {
-    glm::vec4 v0;
-    glm::vec4 v1;
-    glm::vec4 v2;
-    glm::vec4 color;
-};
-
-struct GPUObject {
-    glm::vec4 bmin; // xyz: min, w: reflectivity
-    glm::vec4 bmax; // xyz: max, w: triangle start index
-    int triangleCount;
-    int padding[3];
-};
 
 int main()
 {
@@ -113,47 +100,7 @@ int main()
         glBufferData(GL_SHADER_STORAGE_BUFFER, 0, NULL, GL_DYNAMIC_DRAW);
         glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, objectSSBO);
 
-        // Create shared Box assets
-        Mesh* boxMesh = new Mesh({}, {});
-        boxMesh->addCube(1.0f);
-        boxMesh->subdivideLinear(); 
-        boxMesh->subdivideLinear();
-        Material boxMaterial;
-
-        // Create shared Sphere assets for the "bolt"
-        Mesh* sphereMesh = Icosahedron::createIcosphere(1.0f, 2); // Reduced from 3 to 2 for better performance
-        Material sphereMaterial;
-
-        std::vector<Object*> boxes;
-        for (int y = 0; y < 4; ++y) {
-            for (int x = 0; x < 4; ++x) {
-                for (int z = 0; z < 4; ++z) {
-                    Object* box = new Object(boxMesh, &boxMaterial);
-                    // Center the 4x4 stack. Each box is 1x1x1.
-                    // Floor is at -2.0. So bottom boxes (y=0) should be at -1.5.
-                    box->setPosition(glm::vec3(x - 1.5f, y - 1.5f, z - 1.5f));
-                    box->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
-                    box->setAsBox(1.0f, 1.0f, 1.0f, 5.0f); // Lighter density for the stack
-                    box->fixedObject = false;
-                    box->restitution = 0.1f;
-                    boxes.push_back(box);
-                }
-            }
-        }
-
-        // Create ground using new procedural plan
-        Mesh* groundMesh = new Mesh({}, {});
-        groundMesh->addPlan(15.0f);
-        Material groundMaterial;
-        Object ground(groundMesh, &groundMaterial);
-        ground.setPosition(glm::vec3(0.0f, -2.0f, 0.0f));
-        ground.fixedObject = true;
-
-        // Physics Solver setup
-        RigidSolver solver(glm::vec3(0.0f, -9.81f, 0.0f), -2.0f);
-        for (auto* box : boxes) {
-            solver.addObject(box);
-        }
+        Scene currentScene = createPhysicsScene(); 
 
         // Render loop
         while (!glfwWindowShouldClose(window))
@@ -162,8 +109,6 @@ int main()
             float currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
-
-            processInput(window, solver, boxes, sphereMesh, &sphereMaterial);
 
             // Updated Orbital Camera Logic (Manual)
             if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) cameraPhi -= rotationSpeed;
@@ -185,7 +130,7 @@ int main()
             float fixedTimeStep = 0.0025f; 
             timeAccumulator += std::min(deltaTime, 0.1f); // Cap to 100ms to prevent death spiral
             while (timeAccumulator >= fixedTimeStep) {
-                solver.step(fixedTimeStep);
+                currentScene.solver.step(fixedTimeStep);
                 timeAccumulator -= fixedTimeStep;
             }
             double physEnd = glfwGetTime();

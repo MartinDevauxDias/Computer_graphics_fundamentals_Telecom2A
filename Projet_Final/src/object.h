@@ -4,9 +4,13 @@
 
 #include "mesh.h"
 #include "material.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <vector>
+
+#include "gputypes.h"
 
 class Object {
 public:
@@ -63,6 +67,9 @@ public:
     void setPosition(const glm::vec3& pos);
     void setRotation(const glm::vec3& eulerAngles); // Helper to set from euler
     void setScale(const glm::vec3& scl);
+
+    // Function to convert an object to its GPU representation
+    void toGPU(GPUObject& gpuObject, std::vector<GPUTriangle>& gpuTriangles, size_t triangle_offset) const;
 
 private:
     glm::vec3 netForce;

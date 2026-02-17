@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FinalProject.dir/link.d"
   "CMakeFiles/FinalProject.dir/src/Error.cpp.o"
   "CMakeFiles/FinalProject.dir/src/Error.cpp.o.d"
   "CMakeFiles/FinalProject.dir/src/icosahedron.cpp.o"

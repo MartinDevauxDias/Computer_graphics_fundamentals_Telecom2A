@@ -3,16 +3,14 @@
 #include "stb_image.h"
 #include <iostream>
 
-// Default constructor: initialize with default white material
-Material::Material()
-    : ambient(glm::vec3(1.0f)), diffuse(glm::vec3(1.0f)), specular(glm::vec3(1.0f)), shininess(32.0f),
-      diffuseTexture(0), specularTexture(0) {}
+Material::Material() 
+    : ambient(0.1f), diffuse(0.7f), specular(0.2f), shininess(32.0f), 
+      reflectivity(0.0f), diffuseTexture(0), specularTexture(0) {}
 
-// Constructor: create material with diffuse texture
-Material::Material(const std::string &diffusePath)
-{   
+Material::Material(const std::string& diffusePath) 
+    : ambient(0.1f), diffuse(1.0f), specular(0.5f), shininess(32.0f),
+      reflectivity(0.0f), specularTexture(0) {
     diffuseTexture = loadTexture(diffusePath);
-    specularTexture = loadTexture(diffusePath);   // Use same texture for simplicity
 }
 
 // Bind material properties and textures for rendering

@@ -106,3 +106,46 @@ void Object::resetForces() {
     netForce = glm::vec3(0.0f);
     netTorque = glm::vec3(0.0f);
 }
+
+void Object::toGPU(GPUObject& gpuObject, std::vector<GPUTriangle>& gpuTriangles, size_t triangle_offset) const {
+    glm::mat4 model = getModelMatrix();
+    size_t numTris = mesh->indices.size() / 3;
+    
+    glm::vec3 bmin(1e30f), bmax(-1e30f);
+
+    glm::vec4 color = glm::vec4(this->material->diffuse, 1.0f);
+
+    for (size_t i = 0; i < numTris; ++i) {
+        GPUTriangle& tri = gpuTriangles[triangle_offset + i];
+        
+        // Get vertex positions from the mesh
+        glm::vec3 vpos0 = mesh->vertices[mesh->indices[i*3]].position;
+        glm::vec3 vpos1 = mesh->vertices[mesh->indices[i*3+1]].position;
+        glm::vec3 vpos2 = mesh->vertices[mesh->indices[i*3+2]].position;
+
+        // Transform vertices to world space
+        tri.v0 = model * glm::vec4(vpos0, 1.0f);
+        tri.v1 = model * glm::vec4(vpos1, 1.0f);
+        tri.v2 = model * glm::vec4(vpos2, 1.0f);
+        tri.color = color;
+
+        // Update the AABB for this object
+        bmin = glm::min(bmin, glm::vec3(tri.v0));
+        bmin = glm::min(bmin, glm::vec3(tri.v1));
+        bmin = glm::min(bmin, glm::vec3(tri.v2));
+        
+        bmax = glm::max(bmax, glm::vec3(tri.v0));
+        bmax = glm::max(bmax, glm::vec3(tri.v1));
+        bmax = glm::max(bmax, glm::vec3(tri.v2));
+    }
+
+    // Populate the GPUObject struct
+    float matt = 1.0f - this->material->reflectivity;
+    gpuObject = { 
+        glm::vec4(bmin, 0.0f), 
+        glm::vec4(bmax, (float)triangle_offset), 
+        (int)numTris, 
+        this->material->reflectivity, 
+        matt 
+    };
+}

@@ -1,9 +1,9 @@
 
-if (NOT EXISTS "/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: \"/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt\"")
+if (NOT EXISTS "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: \"/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt\"")
 endif()
 
-file(READ "/home/martin/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt" files)
+file(READ "/home/tantalum/Documents/Telecom/2A/IGR/S1P2/Projet_Final/build/external/glfw/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 
 foreach (file ${files})
