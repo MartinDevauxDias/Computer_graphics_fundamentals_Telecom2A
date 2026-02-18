@@ -74,5 +74,12 @@ private:
     Material *cubeMat = nullptr;
 };
 
+class DarkScene : public Scene {
+public: 
+    DarkScene();
+    virtual ~DarkScene();
+    virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
+};
+
 #endif // SCENE_H
 

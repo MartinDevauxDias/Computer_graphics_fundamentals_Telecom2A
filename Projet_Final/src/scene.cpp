@@ -88,6 +88,22 @@ PhysicsStackScene::PhysicsStackScene()
     this->objects.push_back(ground);
 }
 
+PhysicsStackScene::~PhysicsStackScene()
+{
+    std::cout << "PhysicsStackScene destructor called." << std::endl;
+    // Clean up the assets owned ONLY by this scene
+    if (SphereMesh)
+    {
+        SphereMesh->cleanup();
+        delete SphereMesh;
+    }
+    if (SphereMaterial)
+    {
+        delete SphereMaterial;
+    }
+    // The base class destructor will handle cleaning the `objects` vector.
+}
+
 // --- RayTracingScene Implementation ---
 
 RayTracingScene::RayTracingScene()
@@ -235,22 +251,6 @@ RayTracingScene::RayTracingScene()
 RayTracingScene::~RayTracingScene() {}
 
 void RayTracingScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}
-
-PhysicsStackScene::~PhysicsStackScene()
-{
-    std::cout << "PhysicsStackScene destructor called." << std::endl;
-    // Clean up the assets owned ONLY by this scene
-    if (SphereMesh)
-    {
-        SphereMesh->cleanup();
-        delete SphereMesh;
-    }
-    if (SphereMaterial)
-    {
-        delete SphereMaterial;
-    }
-    // The base class destructor will handle cleaning the `objects` vector.
-}
 
 void PhysicsStackScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection)
 {
