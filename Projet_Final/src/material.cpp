@@ -1,15 +1,19 @@
-#include "material.h"
+#include "object.h"
 #include "shader.h"
 #include "stb_image.h"
 #include <iostream>
 
 Material::Material() 
     : ambient(0.1f), diffuse(0.7f), specular(0.2f), shininess(32.0f), 
-      reflectivity(0.0f), diffuseTexture(0), specularTexture(0) {}
+      reflectivity(0.0f), roughness(0.0f), transparency(0.0f), ior(1.5f),
+      diffuseTexture(0), specularTexture(0) {}
+
+Material::~Material() {}
 
 Material::Material(const std::string& diffusePath) 
     : ambient(0.1f), diffuse(1.0f), specular(0.5f), shininess(32.0f),
-      reflectivity(0.0f), specularTexture(0) {
+      reflectivity(0.0f), roughness(0.0f), transparency(0.0f), ior(1.5f),
+      specularTexture(0) {
     diffuseTexture = loadTexture(diffusePath);
 }
 

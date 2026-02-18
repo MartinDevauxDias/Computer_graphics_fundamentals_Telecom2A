@@ -44,7 +44,7 @@ public:
     glm::mat4 getProjectionMatrix();
 
 private:
-    float movementSpeed = 2.5f;
+    float movementSpeed = 5.0f;
     float mouseSensitivity = 0.1f;
 
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);

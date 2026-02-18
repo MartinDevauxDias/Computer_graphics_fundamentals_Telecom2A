@@ -36,8 +36,7 @@ void RigidSolver::step(float deltaTime) {
         if (obj->fixedObject) continue;
         obj->velocity += gravity * deltaTime; 
         
-        // Very light damping (air resistance)
-        obj->velocity *= 0.9995f;
+        obj->velocity *= 0.999f;
         obj->angularVelocity *= 0.999f;
     }
 
@@ -72,8 +71,8 @@ void RigidSolver::step(float deltaTime) {
 }
 
 void RigidSolver::solve(float dt) {
-    const int iterations = 20; 
-    const float beta = 0.15f;
+    const int iterations = 20;
+    const float beta = 0.02f;
     const float slop = 0.01f;  
 
     // Pre-Step
@@ -297,7 +296,6 @@ void RigidSolver::detectCollisions() {
                 bool hit = check(obbA.axes[0]) && check(obbA.axes[1]) && check(obbA.axes[2]) && check(obbB.axes[0]) && check(obbB.axes[1]) && check(obbB.axes[2]);
                 if (hit) { for(int x=0; x<3; ++x) for(int y=0; y<3; ++y) if(!check(glm::cross(obbA.axes[x], obbB.axes[y]))) { hit = false; break; } }
                 if (hit) {
-                    std::cout << "DEBUG: Box-Box SAT collision detected between objects. Penetration: " << minP << std::endl;
                     auto sampleLocal = [&](Object* s, Object* t, glm::vec3 n, bool isS_A, std::vector<ContactConstraint>& constraints_list) {
                         glm::mat3 Rs = glm::toMat3(s->orientation);
                         glm::mat3 Rt_inv = glm::transpose(glm::toMat3(t->orientation));
@@ -306,7 +304,7 @@ void RigidSolver::detectCollisions() {
                         for(const auto& v : s->mesh->vertices) {
                             glm::vec3 p = s->position + Rs * (v.position * s->scale);
                             glm::vec3 pL = Rt_inv * (p - t->position);
-                            if (std::abs(pL.x) <= h_t.x + 0.001f && std::abs(pL.y) <= h_t.y + 0.001f && std::abs(pL.z) <= h_t.z + 0.001f) 
+                            if (std::abs(pL.x) <= h_t.x + 0.005f && std::abs(pL.y) <= h_t.y + 0.005f && std::abs(pL.z) <= h_t.z + 0.005f) 
                             {
                                 float pen; glm::vec3 dummyN;
                                 if (isPointInsideObject(p, t, dummyN, pen)) {
@@ -355,3 +353,4 @@ bool RigidSolver::isPointInsideObject(const glm::vec3& p, Object* obj, glm::vec3
 }
 
 void RigidSolver::reset() {}
+

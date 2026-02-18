@@ -20,15 +20,9 @@ public:
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
 
-    // Constructor: create mesh from vertex and index data
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
-
-    // Render the mesh
     void draw();
-
-    // Release GPU resources
     void cleanup();
-
     virtual ~Mesh() {}
 
     void computeBoundingSphere(glm::vec3 &center, float &radius) const;
@@ -44,9 +38,17 @@ public:
     static bool loadOFF(const std::string &filename, Mesh &mesh);
 
 private:
-    unsigned int VAO, VBO, EBO;   // OpenGL buffer objects
+    unsigned int VAO, VBO, EBO;
 protected:
-    void setupMesh();              // Initialize GPU buffers
+    void setupMesh();
 };
 
-#endif
+class Icosahedron : public Mesh {
+public:
+    Icosahedron(float radius = 1.0f);
+    static Mesh* createIcosphere(float radius, unsigned int subdivisions);
+private:
+    void buildIcosahedron(float radius);
+};
+
+#endif // MESH_H

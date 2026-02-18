@@ -48,5 +48,6 @@ class RayTracingScene : public Scene {
 public:
     RayTracingScene();
     virtual ~RayTracingScene();
+    virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
 };
 #endif // SCENE_H

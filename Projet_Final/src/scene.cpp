@@ -1,5 +1,5 @@
 #include "scene.h"
-#include "icosahedron.h"
+#include "window.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -36,26 +36,37 @@ PhysicsStackScene::PhysicsStackScene() {
     // Create assets needed for this specific scene
     SphereMesh = Icosahedron::createIcosphere(1.0f, 2);
     SphereMaterial = new Material();
-    SphereMaterial->diffuse = glm::vec3(1.0f, 0.2f, 0.2f);
+    SphereMaterial->diffuse = glm::vec3(0.9f, 0.9f, 0.9f);
+    SphereMaterial->reflectivity = 0.9f;
+    SphereMaterial->roughness = 0.05f;
 
     // Create shared assets for the boxes and ground
     Mesh* boxMesh = new Mesh({}, {});
     boxMesh->addCube(1.0f);
-    boxMesh->subdivideLinear();
-    boxMesh->subdivideLinear();
+    for(int i=0; i<1; ++i) boxMesh->subdivideLinear(); 
     Material* boxMaterial = new Material();
+    boxMaterial->diffuse = glm::vec3(0.4f, 0.4f, 0.8f);
 
     Mesh* groundMesh = new Mesh({}, {});
     groundMesh->addPlan(15.0f);
     Material* groundMaterial = new Material();
+    groundMaterial->diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+    groundMaterial->reflectivity = 0.4f; // Semi-reflective floor
+    groundMaterial->roughness = 0.1f;
 
     // Create the stack of boxes
+    float groundLevel = -2.0f;
     for (int y = 0; y < 4; ++y) {
         for (int x = 0; x < 4; ++x) {
             for (int z = 0; z < 4; ++z) {
                 Object* box = new Object(boxMesh, boxMaterial);
-                box->setPosition(glm::vec3(x - 1.5f, y - 1.5f, z - 1.5f));
-                box->setAsBox(1.0f, 1.0f, 1.0f, 5.0f);
+                box->setPosition(glm::vec3(
+                    (x - 1.5f) * 1.0f, 
+                    groundLevel + 0.5f + y * 1.0f, 
+                    (z - 1.5f) * 1.0f
+                ));
+                box->setAsBox(1.0f, 1.0f, 1.0f, 1.0f); 
+                box->restitution = 0.0f; 
                 this->addObject(box);
             }
         }
@@ -65,8 +76,147 @@ PhysicsStackScene::PhysicsStackScene() {
     Object* ground = new Object(groundMesh, groundMaterial);
     ground->setPosition(glm::vec3(0.0f, -2.0f, 0.0f));
     ground->fixedObject = true;
-    this->addObject(ground);
+    ground->mass = 0.0f; 
+    ground->collisionRadius = 0.0f;
+    this->objects.push_back(ground);
 }
+
+// --- RayTracingScene Implementation ---
+
+RayTracingScene::RayTracingScene() {
+    // Create shared assets
+    Mesh* sphere = Icosahedron::createIcosphere(1.0f, 3);
+    Mesh* plane = new Mesh({}, {}); plane->addPlan(50.0f);
+
+    // Ground: Matte but noticeably reflective "Studio" floor
+    Material* groundMat = new Material();
+    groundMat->diffuse = glm::vec3(0.1f, 0.1f, 0.12f);
+    groundMat->reflectivity = 0.4f; // More reflective
+    groundMat->roughness = 0.3f;    // Slightly more polished but still matte
+    Object* ground = new Object(plane, groundMat);
+    ground->setPosition(glm::vec3(0, -2.0f, 0));
+    ground->fixedObject = true;
+    this->objects.push_back(ground);
+
+    // Lateral Mirror Wall with Frame (on the right side)
+    float mirrorWidth = 40.0f;
+    float mirrorHeight = 15.0f;
+    float mirrorCenterY = -2.0f + mirrorHeight / 2.0f;
+    float mirrorCenterX = 20.0f;
+    float mirrorCenterZ = -10.0f;
+
+    Mesh* wallPlane = new Mesh({}, {}); wallPlane->addPlan(20.0f); // 40x40 base
+    Material* wallMirrorMat = new Material();
+    wallMirrorMat->diffuse = glm::vec3(0.85f, 0.85f, 1.0f); // Soft tint
+    wallMirrorMat->reflectivity = 1.0f;
+    wallMirrorMat->roughness = 0.0f;
+    Object* mirrorWall = new Object(wallPlane, wallMirrorMat);
+    mirrorWall->setPosition(glm::vec3(mirrorCenterX, mirrorCenterY, mirrorCenterZ)); 
+    mirrorWall->setRotation(glm::vec3(0, 0, 90)); 
+    mirrorWall->setScale(glm::vec3(mirrorHeight / 40.0f, 1.0f, 1.0f)); // Scale Y-axis (local X because of rot)
+    mirrorWall->fixedObject = true;
+    this->addObject(mirrorWall);
+
+    // Frame for the mirror (4 beams)
+    Mesh* frameBox = new Mesh({}, {}); 
+    frameBox->addCube(1.0f);
+    frameBox->subdivideLinear();
+    Material* frameMat = new Material();
+    frameMat->diffuse = glm::vec3(0.1f, 0.1f, 0.1f);
+    frameMat->reflectivity = 0.5f;
+    frameMat->roughness = 0.2f;
+
+    // Right/Left edges (vertical beams)
+    for (float z_off : {-mirrorWidth/2.0f, mirrorWidth/2.0f}) {
+        Object* beam = new Object(frameBox, frameMat);
+        beam->setPosition(glm::vec3(mirrorCenterX + 0.05f, mirrorCenterY, mirrorCenterZ + z_off));
+        beam->setScale(glm::vec3(0.5f, mirrorHeight + 0.5f, 0.5f));
+        beam->fixedObject = true;
+        this->addObject(beam);
+    }
+    // Top/Bottom edges (horizontal beams)
+    for (float y_off : {-mirrorHeight/2.0f, mirrorHeight/2.0f}) {
+        Object* beam = new Object(frameBox, frameMat);
+        beam->setPosition(glm::vec3(mirrorCenterX + 0.05f, mirrorCenterY + y_off, mirrorCenterZ));
+        beam->setScale(glm::vec3(0.5f, 0.5f, mirrorWidth + 0.5f));
+        beam->fixedObject = true;
+        this->addObject(beam);
+    }
+
+    // Common radius for most spheres to keep sizes similar
+    float r = 2.0f;
+    float floorY = -2.0f + r; // Position Y so they touch the ground
+
+    // 1. Silver Mirror - Pushed further to the back-right
+    Material* silverMat = new Material();
+    silverMat->diffuse = glm::vec3(0.95f, 0.95f, 1.0f);
+    silverMat->reflectivity = 1.0f;
+    silverMat->roughness = 0.0f;
+    Object* s1 = new Object(sphere, silverMat);
+    s1->setPosition(glm::vec3(12.0f, floorY, -22.0f));
+    s1->setScale(glm::vec3(r));
+    s1->fixedObject = true; s1->isSphere = true;
+    this->addObject(s1);
+
+    // 2. Crystal Glass - Pushed to the far-left
+    Material* glassMat = new Material();
+    glassMat->transparency = 1.0f;
+    glassMat->ior = 1.5f; 
+    glassMat->diffuse = glm::vec3(0.9f, 1.0f, 1.0f);
+    Object* s2 = new Object(sphere, glassMat);
+    s2->setPosition(glm::vec3(-11.0f, floorY, -13.0f));
+    s2->setScale(glm::vec3(r));
+    s2->fixedObject = true; s2->isSphere = true;
+    this->addObject(s2);
+
+    // 3. Matte Charcoal - Front-right with more space
+    Material* matteMat = new Material();
+    matteMat->diffuse = glm::vec3(0.12f, 0.12f, 0.15f);
+    matteMat->reflectivity = 0.0f;
+    matteMat->roughness = 1.0f;
+    Object* s3 = new Object(sphere, matteMat);
+    s3->setPosition(glm::vec3(7.0f, floorY, -6.5f));
+    s3->setScale(glm::vec3(r));
+    s3->fixedObject = true; s3->isSphere = true;
+    this->addObject(s3);
+
+    // 4. Polished Gold - Deep center area
+    Material* goldMat = new Material();
+    goldMat->diffuse = glm::vec3(1.0f, 0.8f, 0.2f);
+    goldMat->reflectivity = 0.9f;
+    goldMat->roughness = 0.05f;
+    Object* s4 = new Object(sphere, goldMat);
+    s4->setPosition(glm::vec3(2.0f, floorY, -18.0f));
+    s4->setScale(glm::vec3(r));
+    s4->fixedObject = true; s4->isSphere = true;
+    this->addObject(s4);
+
+    // 5. Burnished Copper - Front-left area
+    Material* metalMat = new Material();
+    metalMat->diffuse = glm::vec3(0.8f, 0.4f, 0.25f);
+    metalMat->reflectivity = 0.7f;
+    metalMat->roughness = 0.2f;
+    Object* s5 = new Object(sphere, metalMat);
+    s5->setPosition(glm::vec3(-3.5f, floorY, -7.5f));
+    s5->setScale(glm::vec3(r));
+    s5->fixedObject = true; s5->isSphere = true;
+    this->addObject(s5);
+
+    // 6. Deep Sage - Far back-left corner
+    Material* sageMat = new Material();
+    sageMat->diffuse = glm::vec3(0.35f, 0.45f, 0.35f);
+    sageMat->reflectivity = 0.1f;
+    sageMat->roughness = 0.8f;
+    Object* s6 = new Object(sphere, sageMat);
+    s6->setPosition(glm::vec3(-13.0f, floorY, -24.0f));
+    s6->setScale(glm::vec3(r));
+    s6->fixedObject = true; s6->isSphere = true;
+    this->addObject(s6);
+}
+
+RayTracingScene::~RayTracingScene() {}
+
+void RayTracingScene::processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) {}
 
 PhysicsStackScene::~PhysicsStackScene() {
     std::cout << "PhysicsStackScene destructor called." << std::endl;
@@ -82,29 +232,20 @@ PhysicsStackScene::~PhysicsStackScene() {
 }
 
 void PhysicsStackScene::processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) {
+    // Get the window instance to access the cameraFront vector directly
+    Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
+    glm::vec3 cameraFront = win ? win->cameraFront : glm::vec3(0, 0, -1);
+
     static bool leftMousePressed = false;
     static bool rightMousePressed = false;
 
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
         if (!leftMousePressed) {
-            int width, height;
-            glfwGetWindowSize(window, &width, &height);
-            double xpos, ypos;
-            glfwGetCursorPos(window, &xpos, &ypos);
-
-            float x = (2.0f * xpos) / width - 1.0f;
-            float y = 1.0f - (2.0f * ypos) / height;
-
-            glm::vec4 rayClip = glm::vec4(x, y, -1.0, 1.0);
-            glm::vec4 rayEye = glm::inverse(projection) * rayClip;
-            rayEye = glm::vec4(rayEye.x, rayEye.y, -1.0, 0.0);
-            glm::vec3 rayWorld = glm::normalize(glm::vec3(glm::inverse(view) * rayEye));
-
             Object* bolt = new Object(this->SphereMesh, this->SphereMaterial);
             bolt->setPosition(cameraPos);
             bolt->setScale(glm::vec3(0.5f));
-            bolt->setAsSphere(0.5f, 10.0f);
-            bolt->velocity = rayWorld * 20.0f;
+            bolt->setAsSphere(0.5f, 2.0f); // Lower mass from 10.0 to 2.0
+            bolt->velocity = cameraFront * 40.0f; // Directly use camera front
             this->addObject(bolt);
 
             leftMousePressed = true;
@@ -122,9 +263,9 @@ void PhysicsStackScene::processInput(GLFWwindow* window, const glm::vec3& camera
             Object* bigSphere = new Object(SphereMesh, SphereMaterial);
             bigSphere->setPosition(spawnPos);
             bigSphere->setScale(glm::vec3(3.0f)); // Big visual radius
-            bigSphere->setAsSphere(3.0f, 15.0f); // Collision radius 3.0 to match visual scale
+            bigSphere->setAsSphere(3.0f, 10.0f); // Collision radius 3.0 to match visual scale
             bigSphere->velocity = glm::vec3(0.0f); // No start velocity
-            bigSphere->restitution = 0.3f; // Less bouncy since it's heavy
+            bigSphere->restitution = 0.1f; // Less bouncy since it's heavy
             this->addObject(bigSphere);
 
             rightMousePressed = true;

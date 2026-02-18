@@ -1,4 +1,4 @@
-#include "icosahedron.h"
+#include "mesh.h"
 #include <cmath>
 #include <map>
 

@@ -3,7 +3,6 @@
 
 #include "shader.h"
 #include "object.h"
-#include "icosahedron.h"
 #include "rigidsolver.h"
 #include "scene.h"
 #include "renderer.h"
@@ -51,8 +50,22 @@ int main()
 
             window.processInput(*currentScene, deltaTime);
 
+            // Toggle Scene logic with keyboard keys '1' and '2'
+            if (glfwGetKey(window.ptr, GLFW_KEY_1) == GLFW_PRESS) {
+                if (!dynamic_cast<PhysicsStackScene*>(currentScene)) {
+                    delete currentScene;
+                    currentScene = new PhysicsStackScene();
+                }
+            }
+            if (glfwGetKey(window.ptr, GLFW_KEY_2) == GLFW_PRESS) {
+                if (!dynamic_cast<RayTracingScene*>(currentScene)) {
+                    delete currentScene;
+                    currentScene = new RayTracingScene();
+                }
+            }
+
             // Physics update loop
-            float fixedTimeStep = 0.0025f; 
+            float fixedTimeStep = 0.01f; 
             timeAccumulator += std::min(deltaTime, 0.1f);
             while (timeAccumulator >= fixedTimeStep) {
                 double physStart = glfwGetTime();

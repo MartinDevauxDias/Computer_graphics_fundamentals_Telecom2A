@@ -1,0 +1,39 @@
+# Compilation and build artifacts
+build/
+bin/
+obj/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeConfigureLog.yaml
+cmake_install.cmake
+# Ignore Makefiles except for the one in the root
+[Mm]akefile
+!/Makefile
+
+# Object files and libraries
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
+*.dylib
+
+# Executables
+FinalProject
+*.exe
+*.out
+*.app
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Support files
+*.log

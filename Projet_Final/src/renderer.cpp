@@ -1,5 +1,6 @@
 #include "renderer.h"
-#include "gputypes.h"
+#include "scene.h"
+#include "object.h"
 #include <glad/glad.h>
 #include <omp.h>
 #include <vector>
@@ -19,6 +20,7 @@ Renderer::Renderer(unsigned int w, unsigned int h)
 
 Renderer::~Renderer() {
     glDeleteTextures(1, &textureOutput);
+    glDeleteTextures(1, &accumulationTexture);
     glDeleteVertexArrays(1, &quadVAO);
     glDeleteBuffers(1, &triangleSSBO);
     glDeleteBuffers(1, &objectSSBO);
@@ -65,6 +67,25 @@ void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4
 double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos) {
     glDisable(GL_DEPTH_TEST);
     double prepStart = glfwGetTime();
+
+    // Determine if scene is static (no non-fixed objects)
+    bool isStatic = true;
+    for (auto* obj : scene.objects) {
+        if (!obj->fixedObject) {
+            isStatic = false;
+            break;
+        }
+    }
+
+    // Reset frame counter if camera moves or scene is dynamic
+    if (cameraPos != lastCameraPos || view != lastView || !isStatic) {
+        frameCounter = 1;
+        lastCameraPos = cameraPos;
+        lastView = view;
+    } else {
+        frameCounter++;
+    }
+
     // 1. Prepare data for GPU
     std::vector<size_t> offsets(scene.objects.size() + 1);
     offsets[0] = 0;
@@ -80,39 +101,7 @@ double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm:
 
     #pragma omp parallel for
     for (int i = 0; i < (int)scene.objects.size(); ++i) {
-        Object* obj = scene.objects[i];
-        glm::vec4 color;
-        float reflect = 0.0f;
-
-        if (obj->fixedObject) {
-            color = glm::vec4(0.3f, 0.5f, 0.3f, 0.0f);
-            reflect = 0.6f;
-        } else if (obj->collisionRadius > 0.0f) {
-            color = glm::vec4(1.0f, 0.2f, 0.2f, 0.0f);
-            reflect = 0.0f;
-        } else {
-            float r = 0.4f + 0.4f * sin(i * 0.5f);
-            float g = 0.4f + 0.4f * cos(i * 0.3f);
-            float b = 0.6f + 0.2f * sin(i * 0.8f);
-            color = glm::vec4(r, g, b, 0.0f);
-            reflect = 0.2f;
-        }
-
-        glm::mat4 model = obj->getModelMatrix();
-        size_t startIdx = offsets[i];
-        size_t numTris = obj->mesh->indices.size() / 3;
-        glm::vec3 bmin(1e30f), bmax(-1e30f);
-
-        for (size_t j = 0; j < numTris; ++j) {
-            GPUTriangle& tri = gpuTriangles[startIdx + j];
-            tri.v0 = model * glm::vec4(obj->mesh->vertices[obj->mesh->indices[j*3]].position, 1.0f);
-            tri.v1 = model * glm::vec4(obj->mesh->vertices[obj->mesh->indices[j*3+1]].position, 1.0f);
-            tri.v2 = model * glm::vec4(obj->mesh->vertices[obj->mesh->indices[j*3+2]].position, 1.0f);
-            tri.color = glm::vec4(glm::vec3(color), reflect);
-            bmin = glm::min(bmin, glm::vec3(tri.v0)); bmin = glm::min(bmin, glm::vec3(tri.v1)); bmin = glm::min(bmin, glm::vec3(tri.v2));
-            bmax = glm::max(bmax, glm::vec3(tri.v0)); bmax = glm::max(bmax, glm::vec3(tri.v1)); bmax = glm::max(bmax, glm::vec3(tri.v2));
-        }
-        gpuObjects[i] = { glm::vec4(bmin, reflect), glm::vec4(bmax, float(startIdx)), int(numTris) };
+        scene.objects[i]->toGPU(gpuObjects[i], gpuTriangles, offsets[i]);
     }
 
     double prepTime = glfwGetTime() - prepStart;
@@ -130,8 +119,14 @@ double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm:
     computeShader.set("invView", glm::inverse(view));
     computeShader.set("invProjection", glm::inverse(projection));
     computeShader.set("cameraPos", cameraPos);
+    computeShader.set("frameCounter", (int)frameCounter);
+
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, triangleSSBO);
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, objectSSBO);
+    
+    glBindImageTexture(0, textureOutput, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+    glBindImageTexture(1, accumulationTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
+
     glDispatchCompute(screenWidth / 16, screenHeight / 16, 1);
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
@@ -158,6 +153,15 @@ void Renderer::initFramebuffers() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, screenWidth, screenHeight, 0, GL_RGBA, GL_FLOAT, NULL);
     glBindImageTexture(0, textureOutput, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
+
+    glGenTextures(1, &accumulationTexture);
+    glBindTexture(GL_TEXTURE_2D, accumulationTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, screenWidth, screenHeight, 0, GL_RGBA, GL_FLOAT, NULL);
+    glBindImageTexture(1, accumulationTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
 }
 
 void Renderer::initScreenQuad() {

@@ -7,7 +7,7 @@
 
 Object::Object(Mesh* mesh, Material* material)
     : mesh(mesh), material(material), position(0.0f), orientation(1.0f, 0.0f, 0.0f, 0.0f), scale(1.0f),
-      velocity(0.0f), linearMomentum(0.0f), mass(1.0f), collisionRadius(0.0f), fixedObject(true),
+      velocity(0.0f), linearMomentum(0.0f), mass(1.0f), collisionRadius(0.0f), fixedObject(false),
       angularVelocity(0.0f), angularMomentum(0.0f), 
       inverseInertiaTensorBody(glm::mat3(1.0f)), inverseInertiaTensorWorld(glm::mat3(1.0f)),
       restitution(0.5f), friction(0.3f), drag(0.01f), netForce(0.0f), netTorque(0.0f) {}
@@ -27,6 +27,7 @@ void Object::setAsBox(float width, float height, float depth, float density) {
 void Object::setAsSphere(float radius, float density) {
     mass = (4.0f / 3.0f) * 3.14159f * radius * radius * radius * density;
     collisionRadius = radius;
+    isSphere = true;
     float I = (2.0f / 5.0f) * mass * radius * radius;
     
     glm::mat3 I0(0.0f);
@@ -108,44 +109,54 @@ void Object::resetForces() {
 }
 
 void Object::toGPU(GPUObject& gpuObject, std::vector<GPUTriangle>& gpuTriangles, size_t triangle_offset) const {
-    glm::mat4 model = getModelMatrix();
-    size_t numTris = mesh->indices.size() / 3;
-    
-    glm::vec3 bmin(1e30f), bmax(-1e30f);
+    glm::vec3 baseColor = this->material->diffuse;
+    float reflect = this->material->reflectivity;
+    float roughness = this->material->roughness;
+    float transparency = this->material->transparency;
+    float ior = this->material->ior;
+    glm::vec4 matInfo = glm::vec4(reflect, roughness, ior, transparency);
 
-    glm::vec4 color = glm::vec4(this->material->diffuse, 1.0f);
-
-    for (size_t i = 0; i < numTris; ++i) {
-        GPUTriangle& tri = gpuTriangles[triangle_offset + i];
+    if (isSphere) {
+        float r = scale.x; // Assume uniform scale
+        glm::vec3 bmin = position - glm::vec3(r);
+        glm::vec3 bmax = position + glm::vec3(r);
         
-        // Get vertex positions from the mesh
-        glm::vec3 vpos0 = mesh->vertices[mesh->indices[i*3]].position;
-        glm::vec3 vpos1 = mesh->vertices[mesh->indices[i*3+1]].position;
-        glm::vec3 vpos2 = mesh->vertices[mesh->indices[i*3+2]].position;
+        gpuObject.bmin = glm::vec4(bmin, 1.0f); // 1.0f means sphere
+        gpuObject.bmax = glm::vec4(bmax, (float)triangle_offset);
+        gpuObject.triangle_count = 0;
+        gpuObject.radius = r;
 
-        // Transform vertices to world space
-        tri.v0 = model * glm::vec4(vpos0, 1.0f);
-        tri.v1 = model * glm::vec4(vpos1, 1.0f);
-        tri.v2 = model * glm::vec4(vpos2, 1.0f);
-        tri.color = color;
+        // For spheres, we use one dummy triangle to store material/color/center in v0
+        GPUTriangle& tri = gpuTriangles[triangle_offset];
+        tri.v0 = glm::vec4(position, 1.0f);
+        tri.color = glm::vec4(baseColor, 1.0f);
+        tri.material = matInfo;
+    } else {
+        glm::mat4 model = getModelMatrix();
+        size_t numTris = mesh->indices.size() / 3;
+        glm::vec3 bmin(1e30f), bmax(-1e30f);
 
-        // Update the AABB for this object
-        bmin = glm::min(bmin, glm::vec3(tri.v0));
-        bmin = glm::min(bmin, glm::vec3(tri.v1));
-        bmin = glm::min(bmin, glm::vec3(tri.v2));
-        
-        bmax = glm::max(bmax, glm::vec3(tri.v0));
-        bmax = glm::max(bmax, glm::vec3(tri.v1));
-        bmax = glm::max(bmax, glm::vec3(tri.v2));
+        for (size_t i = 0; i < numTris; ++i) {
+            GPUTriangle& tri = gpuTriangles[triangle_offset + i];
+            
+            tri.v0 = model * glm::vec4(mesh->vertices[mesh->indices[i*3]].position, 1.0f);
+            tri.v1 = model * glm::vec4(mesh->vertices[mesh->indices[i*3+1]].position, 1.0f);
+            tri.v2 = model * glm::vec4(mesh->vertices[mesh->indices[i*3+2]].position, 1.0f);
+            tri.color = glm::vec4(baseColor, 1.0f);
+            tri.material = matInfo;
+
+            bmin = glm::min(bmin, glm::vec3(tri.v0));
+            bmin = glm::min(bmin, glm::vec3(tri.v1));
+            bmin = glm::min(bmin, glm::vec3(tri.v2));
+            
+            bmax = glm::max(bmax, glm::vec3(tri.v0));
+            bmax = glm::max(bmax, glm::vec3(tri.v1));
+            bmax = glm::max(bmax, glm::vec3(tri.v2));
+        }
+
+        gpuObject.bmin = glm::vec4(bmin, 0.0f); // 0.0f means mesh
+        gpuObject.bmax = glm::vec4(bmax, (float)triangle_offset);
+        gpuObject.triangle_count = (int)numTris;
+        gpuObject.radius = 0.0f;
     }
-
-    // Populate the GPUObject struct
-    float matt = 1.0f - this->material->reflectivity;
-    gpuObject = { 
-        glm::vec4(bmin, 0.0f), 
-        glm::vec4(bmax, (float)triangle_offset), 
-        (int)numTris, 
-        this->material->reflectivity, 
-        matt 
-    };
 }

@@ -13,8 +13,8 @@ file(GLOB_RECURSE SOURCE_FILES
 
 # Add all Header Files
 file(GLOB_RECURSE HEADER_FILES 
-	${CMAKE_SOURCE_DIR}/src/*.h
-	${CMAKE_SOURCE_DIR}/src/*.hpp
+	${CMAKE_SOURCE_DIR}/include/*.h
+	${CMAKE_SOURCE_DIR}/include/*.hpp
 )
 
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
@@ -49,6 +49,7 @@ target_include_directories(${PROJECT_NAME}
 	PUBLIC ${GLFW_ROOT_DIR}/include
 	PUBLIC ${GLAD_ROOT_DIR}/include
 	PRIVATE ${CMAKE_SOURCE_DIR}/src
+	PRIVATE ${CMAKE_SOURCE_DIR}/include
 )
 
 #		Include Files from Outside the Workspace Folder -> Like Vulkan SDK
