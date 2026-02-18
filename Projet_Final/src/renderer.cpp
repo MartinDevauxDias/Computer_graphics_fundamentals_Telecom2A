@@ -7,9 +7,9 @@
 #include <GLFW/glfw3.h>
 
 Renderer::Renderer(unsigned int w, unsigned int h)
-    : rasterShader("src/vertex_shader.glsl", "src/fragment_shader.glsl"),
-      computeShader("src/raytracing_compute.glsl"),
-      screenShader("src/screen_vertex.glsl", "src/screen_fragment.glsl"),
+    : rasterShader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl"),
+      computeShader("shaders/raytracing_compute.glsl"),
+      screenShader("shaders/screen_vertex.glsl", "shaders/screen_fragment.glsl"),
       screenWidth(w), screenHeight(h)
 {
     initFramebuffers();
