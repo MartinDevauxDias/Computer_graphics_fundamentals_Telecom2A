@@ -21,6 +21,8 @@ public:
     float roughness;
     float transparency;
     float ior;
+    glm::vec3 emissive;
+    float emissiveStrength;
 
     unsigned int diffuseTexture;
     unsigned int specularTexture;

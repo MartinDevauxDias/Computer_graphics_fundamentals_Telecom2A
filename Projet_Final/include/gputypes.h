@@ -17,6 +17,7 @@ struct GPUObject {
     int triangle_count;
     float radius;
     float padding[2];
+    glm::vec4 emissive;
 };
 
 #endif // GPUTYPES_H

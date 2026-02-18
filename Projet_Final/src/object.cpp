@@ -115,6 +115,7 @@ void Object::toGPU(GPUObject& gpuObject, std::vector<GPUTriangle>& gpuTriangles,
     float transparency = this->material->transparency;
     float ior = this->material->ior;
     glm::vec4 matInfo = glm::vec4(reflect, roughness, ior, transparency);
+    gpuObject.emissive = glm::vec4(this->material->emissive, this->material->emissiveStrength);
 
     if (isSphere) {
         float r = scale.x; // Assume uniform scale

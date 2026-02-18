@@ -23,6 +23,7 @@ struct Object {
     int triangleCount;
     float radius;
     float padding[2];
+    vec4 emissive;
 };
 
 layout(std430, binding = 2) buffer ObjectBuffer {
@@ -151,7 +152,7 @@ void main() {
         vec3 throughput = vec3(1.0);
         const float EPSILON = 0.005;
 
-        for (int bounce = 0; bounce < 4; bounce++) {
+        for (int bounce = 0; bounce < 20; bounce++) {
             float closestT = 1e30;
             int hitObjIdx = -1;
             int hitTriIdx = -1;
@@ -189,6 +190,12 @@ void main() {
             }
 
             if (hitObjIdx != -1) {
+                vec4 emission = objects[hitObjIdx].emissive;
+                if (emission.w > 0.0) {
+                    sampleColor += throughput * emission.xyz * emission.w;
+                    break;
+                }
+
                 vec3 normal;
                 vec4 mat;
                 vec3 color;
@@ -227,29 +234,7 @@ void main() {
                     ray.direction = randomInHemisphere(normal);
                     ray.origin = hitPoint + normal * EPSILON;
                     throughput *= color;
-                    
-                    // Add direct light contribution (Shadowed Sun)
-                    vec3 sunDir = normalize(vec3(3.0, 5.0, 2.0));
-                    bool inShadow = false;
-                    Ray shadowRay; shadowRay.origin = hitPoint + normal * EPSILON; shadowRay.direction = sunDir;
-                    for (int objIdx = 0; objIdx < objectCount; objIdx++) {
-                        if (intersectAABB(shadowRay, objects[objIdx].bmin.xyz, objects[objIdx].bmax.xyz)) {
-                            if (objects[objIdx].bmin.w > 0.5) {
-                                float t;
-                                int start = int(objects[objIdx].bmax.w);
-                                if (intersectSphere(shadowRay, triangles[start].v0.xyz, objects[objIdx].radius, t)) { inShadow = true; break; }
-                            } else {
-                                int st = int(objects[objIdx].bmax.w);
-                                for (int i = 0; i < objects[objIdx].triangleCount; i++) {
-                                    float t; if (intersectTriangle(shadowRay, triangles[st + i].v0.xyz, triangles[st + i].v1.xyz, triangles[st + i].v2.xyz, t)) { inShadow = true; break; }
-                                }
-                            }
-                        }
-                        if (inShadow) break;
-                    }
-                    if (!inShadow) {
-                        sampleColor += throughput * max(0.0, dot(normal, sunDir)) * 1.5;
-                    }
+                
                 } else if (r < pDiffuse + pReflect) {
                     // Glossy Reflection
                     vec3 reflDir = reflect(ray.direction, normal);

@@ -63,9 +63,15 @@ int main()
                     currentScene = new RayTracingScene();
                 }
             }
+            if (glfwGetKey(window.ptr, GLFW_KEY_3) == GLFW_PRESS) {
+                if (!dynamic_cast<MirrorScene*>(currentScene)) {
+                    delete currentScene;
+                    currentScene = new MirrorScene();
+                }
+            }
 
             // Physics update loop
-            float fixedTimeStep = 0.01f; 
+            float fixedTimeStep = 0.005f; 
             timeAccumulator += std::min(deltaTime, 0.1f);
             while (timeAccumulator >= fixedTimeStep) {
                 double physStart = glfwGetTime();

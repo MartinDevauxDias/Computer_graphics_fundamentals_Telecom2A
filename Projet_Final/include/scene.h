@@ -49,5 +49,30 @@ public:
     RayTracingScene();
     virtual ~RayTracingScene();
     virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
+private:
+    Material *silverMat = nullptr;
+    Material *glassMat = nullptr;
+    Material *matteMat = nullptr;
+    Material *goldMat = nullptr;
+    Material *metalMat = nullptr;
+    Material *sageMat = nullptr;
 };
+
+class MirrorScene : public Scene {
+public:
+    MirrorScene();
+    virtual ~MirrorScene();
+    virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
+private:
+    Mesh *planeMesh = nullptr;
+    Mesh *lightMesh = nullptr;
+    Material *mirrorMat = nullptr;
+    Material *leftMirrorMat = nullptr;
+    Material *rightMirrorMat = nullptr;
+    Material *lightMat = nullptr;
+    Mesh *cubeMesh = nullptr;
+    Material *cubeMat = nullptr;
+};
+
 #endif // SCENE_H
+
