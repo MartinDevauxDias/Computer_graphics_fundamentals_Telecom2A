@@ -25,6 +25,10 @@ Window::Window(unsigned int w, unsigned int h, const char *title) : width(w), he
     glfwSetFramebufferSizeCallback(ptr, framebuffer_size_callback);
     glfwSetCursorPosCallback(ptr, mouse_callback);
 
+    glfwGetWindowPos(ptr, &windowedX, &windowedY);
+    windowedWidth = width;
+    windowedHeight = height;
+
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -63,6 +67,20 @@ void Window::processInput(Scene &currentScene, float deltaTime)
     if (glfwGetKey(ptr, GLFW_KEY_T) == GLFW_PRESS)
         raytracingMode = false;
 
+    static bool f11Pressed = false;
+    if (glfwGetKey(ptr, GLFW_KEY_F11) == GLFW_PRESS)
+    {
+        if (!f11Pressed)
+        {
+            toggleFullscreen();
+            f11Pressed = true;
+        }
+    }
+    else
+    {
+        f11Pressed = false;
+    }
+
     // Camera movement
     float speed = movementSpeed * deltaTime;
     glm::vec3 front_horizontal = glm::normalize(glm::vec3(cameraFront.x, 0.0f, cameraFront.z));
@@ -97,6 +115,24 @@ glm::mat4 Window::getProjectionMatrix()
 }
 
 // --- Static Callbacks ---
+void Window::toggleFullscreen()
+{
+    isFullscreen = !isFullscreen;
+    if (isFullscreen)
+    {
+        glfwGetWindowPos(ptr, &windowedX, &windowedY);
+        glfwGetWindowSize(ptr, &windowedWidth, &windowedHeight);
+
+        GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+        const GLFWvidmode *mode = glfwGetVideoMode(monitor);
+        glfwSetWindowMonitor(ptr, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+    }
+    else
+    {
+        glfwSetWindowMonitor(ptr, NULL, windowedX, windowedY, windowedWidth, windowedHeight, 0);
+    }
+}
+
 void Window::framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
     Window *win = static_cast<Window *>(glfwGetWindowUserPointer(window));

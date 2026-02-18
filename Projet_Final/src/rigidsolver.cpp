@@ -28,7 +28,6 @@ static OBB getOBB(Object* obj) {
 }
 
 void RigidSolver::step(float deltaTime) {
-    
     // 1. Integrate Forces (Velocity) - Parallelized
     #pragma omp parallel for
     for (int i = 0; i < (int)objects.size(); ++i) {
@@ -40,11 +39,11 @@ void RigidSolver::step(float deltaTime) {
         obj->angularVelocity *= 0.999f;
     }
 
-    // 2. Collision Detection - Already Parallelized internally
+    // 2. Collision Detection
     constraints.clear();
     detectCollisions();
 
-    // 3. Solve (PGS) - Inherently serial, better on CPU for ~100 objects
+    // 3. Solve (PGS)
     solve(deltaTime);
 
     // 4. Integrate Position - Parallelized
@@ -72,7 +71,7 @@ void RigidSolver::step(float deltaTime) {
 
 void RigidSolver::solve(float dt) {
     const int iterations = 20;
-    const float beta = 0.02f;
+    const float beta = 0.10f;
     const float slop = 0.01f;  
 
     // Pre-Step
@@ -201,7 +200,7 @@ void RigidSolver::detectCollisions() {
         }
 
         // Object-to-Object checks with simplified AABB filtering
-        #pragma omp for nowait
+        #pragma omp for
         for (int i = 0; i < (int)objects.size(); ++i) {
             for (int j = i + 1; j < (int)objects.size(); ++j) {
                 Object *A = objects[i], *B = objects[j];

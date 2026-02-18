@@ -39,15 +39,41 @@ double Renderer::render(Scene& scene, const glm::mat4& view, const glm::mat4& pr
     }
 }
 
+void Renderer::resize(unsigned int w, unsigned int h) {
+    if (w == screenWidth && h == screenHeight) return;
+    screenWidth = w;
+    screenHeight = h;
+
+    // Delete old textures before recreating them
+    glDeleteTextures(1, &textureOutput);
+    glDeleteTextures(1, &accumulationTexture);
+
+    initFramebuffers();
+    frameCounter = 1; // Reset accumulation
+}
+
 void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4& projection, const glm::vec3& cameraPos, bool wireframeMode) {
     glEnable(GL_DEPTH_TEST);
+    glViewport(0, 0, screenWidth, screenHeight);
     
     if (wireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     rasterShader.use();
-    rasterShader.set("lightPos", glm::vec3(3.0f, 5.0f, 2.0f));
-    rasterShader.set("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+    
+    // Find the first emissive object to use as the light source for rasterization
+    glm::vec3 lPos(30.0f, 50.0f, 20.0f);
+    glm::vec3 lCol(1.0f, 0.9f, 0.7f);
+    for (auto* obj : scene.objects) {
+        if (obj->material && glm::length(obj->material->emissive) > 0.1f) {
+            lPos = obj->position;
+            lCol = obj->material->emissive * obj->material->emissiveStrength;
+            break;
+        }
+    }
+    rasterShader.set("lightPos", lPos);
+    rasterShader.set("lightColor", lCol);
+    
     rasterShader.set("viewPos", cameraPos);
     rasterShader.set("view", view);
     rasterShader.set("projection", projection);
@@ -120,6 +146,8 @@ double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm:
     computeShader.set("invProjection", glm::inverse(projection));
     computeShader.set("cameraPos", cameraPos);
     computeShader.set("frameCounter", (int)frameCounter);
+    computeShader.set("skyTop", scene.skyTop);
+    computeShader.set("skyBottom", scene.skyBottom);
 
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, triangleSSBO);
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, objectSSBO);
@@ -127,7 +155,7 @@ double Renderer::renderRaytraced(Scene& scene, const glm::mat4& view, const glm:
     glBindImageTexture(0, textureOutput, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
     glBindImageTexture(1, accumulationTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
 
-    glDispatchCompute(screenWidth / 16, screenHeight / 16, 1);
+    glDispatchCompute((screenWidth + 15) / 16, (screenHeight + 15) / 16, 1);
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
     // 4. Render result to screen

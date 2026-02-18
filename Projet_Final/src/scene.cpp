@@ -246,9 +246,37 @@ RayTracingScene::RayTracingScene()
     s6->fixedObject = true;
     s6->isSphere = true;
     this->addObject(s6);
+
+    // --- Physical Sun ---
+    this->skyTop = glm::vec3(0.15f, 0.21f, 0.3f);    // Dimmer, moodier blue
+    this->skyBottom = glm::vec3(0.4f, 0.4f, 0.45f);  // Dimmer grey/blue base
+
+    lightMesh = Icosahedron::createIcosphere(1.0f, 2);
+    lightMat = new Material();
+    lightMat->emissive = glm::vec3(1.0f, 0.9f, 0.7f);
+    lightMat->emissiveStrength = 50.0f;
+
+    Object *sun = new Object(lightMesh, lightMat);
+    sun->setPosition(glm::vec3(-50.0f, 30.0f, -10.0f)); // Moved to the left, facing the mirror
+    sun->setScale(glm::vec3(5.0f));
+    sun->isSphere = true;
+    sun->fixedObject = true;
+    this->addObject(sun);
 }
 
-RayTracingScene::~RayTracingScene() {}
+RayTracingScene::~RayTracingScene() {
+    if (lightMesh) {
+        lightMesh->cleanup();
+        delete lightMesh;
+    }
+    if (lightMat) delete lightMat;
+    if (silverMat) delete silverMat;
+    if (glassMat) delete glassMat;
+    if (matteMat) delete matteMat;
+    if (goldMat) delete goldMat;
+    if (metalMat) delete metalMat;
+    if (sageMat) delete sageMat;
+}
 
 void RayTracingScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}
 
@@ -315,18 +343,18 @@ MirrorScene::MirrorScene()
     planeMesh->addPlan(roomSize);
 
     mirrorMat = new Material();
-    mirrorMat->diffuse = glm::vec3(0.95f); // Pure mirrors have no diffuse
+    mirrorMat->diffuse = glm::vec3(0.90f); // Pure mirrors have no diffuse
     mirrorMat->reflectivity = 1.0f;
     mirrorMat->roughness = 0.0f;
 
     leftMirrorMat = new Material();
-    leftMirrorMat->diffuse = glm::vec3(0.6f, 0.6f, 1.0f); // Teinte bleue
-    leftMirrorMat->reflectivity = 1.0f;
+    leftMirrorMat->diffuse = glm::vec3(0.3f, 0.3f, 0.8f); // Richer blue, absorbs more light
+    leftMirrorMat->reflectivity = 0.9f;                   // 90% Sharp reflection, 10% Diffuse
     leftMirrorMat->roughness = 0.0f;
 
     rightMirrorMat = new Material();
-    rightMirrorMat->diffuse = glm::vec3(0.6f, 1.0f, 0.6f); // Teinte verte
-    rightMirrorMat->reflectivity = 1.0f;
+    rightMirrorMat->diffuse = glm::vec3(0.3f, 0.8f, 0.3f); // Richer green, absorbs more light
+    rightMirrorMat->reflectivity = 0.9f;                    // 90% Sharp reflection, 10% Diffuse
     rightMirrorMat->roughness = 0.0f;
 
     // --- Create 6 walls using addObject for consistency ---
@@ -378,7 +406,7 @@ MirrorScene::MirrorScene()
 
     lightMat = new Material();
     lightMat->emissive = glm::vec3(1.0f, 0.95f, 0.85f); // Warm white light
-    lightMat->emissiveStrength = 10.0f;
+    lightMat->emissiveStrength = 20.0f;
 
     Object *light = new Object(lightMesh, lightMat);
     light->setPosition(glm::vec3(0, halfSize - 0.5f + elevation, 0)); // Slightly below the ceiling
@@ -423,3 +451,241 @@ MirrorScene::~MirrorScene()
 
 // This scene is not interactive, so processInput is empty.
 void MirrorScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}
+
+DarkScene::DarkScene()
+{
+    this->skyTop = glm::vec3(0.01f, 0.01f, 0.01f);    // Near black
+    this->skyBottom = glm::vec3(0.05f, 0.05f, 0.05f); // Very dark grey
+
+    sphereMesh = Icosahedron::createIcosphere(1.0f, 3);
+    planeMesh = new Mesh({}, {});
+    planeMesh->addPlan(50.0f);
+    cubeMesh = new Mesh({}, {});
+    cubeMesh->addCube(1.0f);
+
+    // 1. Center Sphere (Grey)
+    sphereMat = new Material();
+    sphereMat->diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+    sphereMat->roughness = 0.5f;
+    sphereMat->reflectivity = 0.2f; // Slightly reflective to show light interaction
+    Object *centerSphere = new Object(sphereMesh, sphereMat);
+    centerSphere->setPosition(glm::vec3(0, 0, 0));
+    centerSphere->setScale(glm::vec3(1.5f));
+    centerSphere->isSphere = true;
+    centerSphere->fixedObject = true;
+    this->addObject(centerSphere);
+
+    // 2. Floor
+    floorMat = new Material();
+    floorMat->diffuse = glm::vec3(0.1f, 0.1f, 0.1f);
+    floorMat->roughness = 0.8f;
+    Object *floor = new Object(planeMesh, floorMat);
+    floor->setPosition(glm::vec3(0, -2.0f, 0));
+    floor->fixedObject = true;
+    this->addObject(floor);
+
+    // --- Red Light Path (Mirror Bounce) ---
+    // Mirror for the red light (on the left)
+    mirrorMat = new Material();
+    mirrorMat->reflectivity = 1.0f;
+    mirrorMat->roughness = 0.0f;
+    Object *redMirror = new Object(planeMesh, mirrorMat);
+    redMirror->setPosition(glm::vec3(-5, 0, 0));
+    redMirror->setRotation(glm::vec3(0, 0, -45)); // Reflects upwards light towards the origin
+    redMirror->setScale(glm::vec3(0.1f));        // 5x5 mirror
+    redMirror->fixedObject = true;
+    this->addObject(redMirror);
+
+    // Red Light (above the mirror)
+    redLightMat = new Material();
+    redLightMat->emissive = glm::vec3(1.0f, 0.05f, 0.05f);
+    redLightMat->emissiveStrength = 60.0f;
+    Object *redLight = new Object(sphereMesh, redLightMat);
+    redLight->setPosition(glm::vec3(-5, 5, 0));
+    redLight->setScale(glm::vec3(0.4f));
+    redLight->isSphere = true;
+    redLight->fixedObject = true;
+    this->addObject(redLight);
+
+    // Occluder (to hide red light from sphere)
+    occluderMat = new Material();
+    occluderMat->diffuse = glm::vec3(0.05f, 0.05f, 0.05f);
+    Object *occluder = new Object(cubeMesh, occluderMat);
+    occluder->setPosition(glm::vec3(-2.5f, 2.5f, 0)); // Between red light and sphere
+    occluder->setScale(glm::vec3(1.0f, 3.0f, 2.0f));
+    occluder->setRotation(glm::vec3(0, 0, -45)); // Same angle as mirror to block direct line
+    occluder->fixedObject = true;
+    this->addObject(occluder);
+
+    // --- Other Lights (Closer) ---
+    // Blue Light (Front Right)
+    blueLightMat = new Material();
+    blueLightMat->emissive = glm::vec3(0.05f, 0.05f, 1.0f);
+    blueLightMat->emissiveStrength = 30.0f;
+    Object *blueLight = new Object(sphereMesh, blueLightMat);
+    blueLight->setPosition(glm::vec3(-3, -1, 3));
+    blueLight->setScale(glm::vec3(0.3f));
+    blueLight->isSphere = true;
+    blueLight->fixedObject = true;
+    this->addObject(blueLight);
+
+    // Green Light (Right Side - opposite to the red mirror)
+    greenLightMat = new Material();
+    greenLightMat->emissive = glm::vec3(0.05f, 1.0f, 0.05f);
+    greenLightMat->emissiveStrength = 30.0f;
+    Object *greenLight = new Object(sphereMesh, greenLightMat);
+    greenLight->setPosition(glm::vec3(5, 1, -2));
+    greenLight->setScale(glm::vec3(0.3f));
+    greenLight->isSphere = true;
+    greenLight->fixedObject = true;
+    this->addObject(greenLight);
+}
+
+DarkScene::~DarkScene()
+{
+    if (sphereMesh) { sphereMesh->cleanup(); delete sphereMesh; }
+    if (planeMesh) { planeMesh->cleanup(); delete planeMesh; }
+    if (cubeMesh) { cubeMesh->cleanup(); delete cubeMesh; }
+    if (sphereMat) delete sphereMat;
+    if (mirrorMat) delete mirrorMat;
+    if (redLightMat) delete redLightMat;
+    if (blueLightMat) delete blueLightMat;
+    if (greenLightMat) delete greenLightMat;
+    if (floorMat) delete floorMat;
+    if (occluderMat) delete occluderMat;
+}
+
+void DarkScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}
+
+// --- SeaScene Implementation ---
+
+SeaScene::SeaScene()
+{
+    this->skyTop = glm::vec3(0.1f, 0.2f, 0.4f);    // Deep blue
+    this->skyBottom = glm::vec3(0.8f, 0.4f, 0.1f); // Orange sunrise
+
+    // Create a high-resolution grid for the sea
+    std::vector<Vertex> vertices;
+    std::vector<unsigned int> indices;
+
+    float stepSize = seaSize / (gridRes - 1);
+    for (int z = 0; z < gridRes; ++z)
+    {
+        for (int x = 0; x < gridRes; ++x)
+        {
+            float posX = x * stepSize - seaSize / 2.0f;
+            float posZ = z * stepSize - seaSize / 2.0f;
+            
+            // Match the height formula at time = 0 to avoid jumping
+            float h = 0.0f;
+            h += 0.4f * (1.0f - std::abs(std::sin(0.15f * posX)));
+            h += 0.25f * (1.0f - std::abs(std::sin(0.12f * posZ + 1.0f)));
+            h += 0.15f * (1.0f - std::abs(std::sin(0.08f * (posX + posZ))));
+
+            Vertex v;
+            v.position = glm::vec3(posX, h - 3.0f, posZ);
+            v.normal = glm::vec3(0, 1, 0);
+            v.texCoords = glm::vec2((float)x / (gridRes-1), (float)z / (gridRes-1));
+            vertices.push_back(v);
+        }
+    }
+
+    for (int z = 0; z < gridRes - 1; ++z)
+    {
+        for (int x = 0; x < gridRes - 1; ++x)
+        {
+            int i0 = x + z * gridRes;
+            int i1 = (x + 1) + z * gridRes;
+            int i2 = x + (z + 1) * gridRes;
+            int i3 = (x + 1) + (z + 1) * gridRes;
+
+            indices.push_back(i0); indices.push_back(i2); indices.push_back(i1);
+            indices.push_back(i1); indices.push_back(i2); indices.push_back(i3);
+        }
+    }
+
+    seaMesh = new Mesh(vertices, indices);
+    seaMat = new Material();
+    // A mix of deep blue and surface scattering
+    seaMat->diffuse = glm::vec3(0.1f, 0.4f, 0.6f); 
+    seaMat->reflectivity = 0.3f;  // Surface glints
+    seaMat->roughness = 0.0f; 
+    seaMat->transparency = 0.9f;  // Multi-path: 50% Dielectric, others use diffuse/reflect
+    seaMat->ior = 1.33f;         // Water IOR
+
+    seaObject = new Object(seaMesh, seaMat);
+    seaObject->fixedObject = false; // Keep non-fixed so renderer resets accumulation every frame
+    this->objects.push_back(seaObject); // DON'T use addObject to bypass physics solver
+
+    // --- Deep Water Layer ---
+    seaBottomMat = new Material();
+    seaBottomMat->diffuse = glm::vec3(0.05f, 0.6f, 0.8f); // Very dark deep blue
+    seaBottomMat->reflectivity = 0.95f;                   // Mirror-like depth
+    seaBottomMat->roughness = 0.0f;
+    seaBottomMat->transparency = 0.1f;                    // Opaque floor
+
+    seaBottomObject = new Object(seaMesh, seaBottomMat); // Reuse the same mesh
+    seaBottomObject->fixedObject = false;
+    this->objects.push_back(seaBottomObject);
+
+    // --- Rising Sun ---
+    sunMesh = Icosahedron::createIcosphere(1.0f, 2);
+    sunMat = new Material();
+    sunMat->emissive = glm::vec3(1.0f, 0.6f, 0.2f); // Deep orange/yellow
+    sunMat->emissiveStrength = 100.0f; // Boosted for the further distance
+
+    sun = new Object(sunMesh, sunMat);
+    sun->setPosition(glm::vec3(0.0f, 5.0f, -120.0f)); 
+    sun->setScale(glm::vec3(12.0f));
+    sun->isSphere = true;
+    sun->fixedObject = false; // Non-fixed to trigger renderer reset
+    this->objects.push_back(sun); 
+}
+
+SeaScene::~SeaScene()
+{
+    if (seaMesh) { seaMesh->cleanup(); delete seaMesh; }
+    if (seaMat) delete seaMat;
+    if (seaBottomMat) delete seaBottomMat;
+    if (sunMesh) { sunMesh->cleanup(); delete sunMesh; }
+    if (sunMat) delete sunMat;
+}
+
+void SeaScene::step(float dt)
+{
+    time += dt;
+
+    // Update sea vertices to create waves
+    float t = time * 0.4f; // Slower time
+    for (int i = 0; i < seaMesh->vertices.size(); ++i)
+    {
+        float x = seaMesh->vertices[i].position.x;
+        float z = seaMesh->vertices[i].position.z;
+
+        // Sharper "triangly" peaks using 1.0 - |sin|
+        // Also reduced amplitude and slowed down the spatial frequencies
+        float h = 0.0f;
+        h += 0.4f * (1.0f - std::abs(std::sin(0.15f * x + 1.2f * t)));
+        h += 0.25f * (1.0f - std::abs(std::sin(0.12f * z + 0.8f * t + 1.0f)));
+        h += 0.15f * (1.0f - std::abs(std::sin(0.08f * (x + z) + 1.5f * t)));
+
+        seaMesh->vertices[i].position.y = h - 3.0f; // Lowered baseline to stay below camera
+    }
+    
+    // Recompute normals and update GPU buffers for the animated mesh
+    seaMesh->recomputeNormals();
+    seaMesh->updateBuffers();
+
+    // Offset the bottom layer slightly below the surface to avoid Z-fighting 
+    // and provide that "thickness" look
+    seaBottomObject->setPosition(glm::vec3(0.0f, -0.2f, 0.0f)); 
+    
+    // Smoothly rise the sun (slower)
+    glm::vec3 sunPos = sun->position;
+    sunPos.y = 5.0f + 2.0f * std::sin(time * 0.05f); 
+    sun->setPosition(sunPos);
+
+    Scene::step(dt);
+}
+
+void SeaScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}

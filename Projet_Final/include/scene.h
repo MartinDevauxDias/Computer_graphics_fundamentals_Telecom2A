@@ -15,11 +15,13 @@ class Scene {
 public:
     std::vector<Object*> objects;
     RigidSolver solver;
+    glm::vec3 skyTop = glm::vec3(0.5f, 0.7f, 1.0f);
+    glm::vec3 skyBottom = glm::vec3(1.0f, 1.0f, 1.0f);
 
     Scene();
     virtual ~Scene(); // Virtual destructor is crucial for base classes
 
-    void step(float dt);
+    virtual void step(float dt);
     void addObject(Object* obj);
 
     // Input handling is now virtual, to be overridden by derived scenes
@@ -56,6 +58,8 @@ private:
     Material *goldMat = nullptr;
     Material *metalMat = nullptr;
     Material *sageMat = nullptr;
+    Material *lightMat = nullptr;
+    Mesh *lightMesh = nullptr;
 };
 
 class MirrorScene : public Scene {
@@ -79,6 +83,42 @@ public:
     DarkScene();
     virtual ~DarkScene();
     virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
+private:
+    Mesh *sphereMesh = nullptr;
+    Mesh *planeMesh = nullptr;
+    Mesh *cubeMesh = nullptr;
+    Material *sphereMat = nullptr;
+    Material *mirrorMat = nullptr;
+    Material *redLightMat = nullptr;
+    Material *blueLightMat = nullptr;
+    Material *greenLightMat = nullptr;
+    Material *floorMat = nullptr;
+    Material *occluderMat = nullptr;
+};
+
+class SeaScene : public Scene {
+public:
+    SeaScene();
+    virtual ~SeaScene();
+    virtual void processInput(GLFWwindow* window, const glm::vec3& cameraPos, const glm::mat4& view, const glm::mat4& projection) override;
+    virtual void step(float dt) override;
+
+private:
+    Mesh *seaMesh = nullptr;
+    Material *seaMat = nullptr;
+    Object *seaObject = nullptr;
+    
+    // Deep layer to simulate thickness
+    Object *seaBottomObject = nullptr;
+    Material *seaBottomMat = nullptr;
+
+    Object *sun = nullptr;
+    Mesh *sunMesh = nullptr;
+    Material *sunMat = nullptr;
+    float time = 0.0f;
+
+    int gridRes = 15;
+    float seaSize = 100.0f;
 };
 
 #endif // SCENE_H

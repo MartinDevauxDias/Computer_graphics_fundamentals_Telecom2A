@@ -69,9 +69,21 @@ int main()
                     currentScene = new MirrorScene();
                 }
             }
+            if (glfwGetKey(window.ptr, GLFW_KEY_4) == GLFW_PRESS) {
+                if (!dynamic_cast<DarkScene*>(currentScene)) {
+                    delete currentScene;
+                    currentScene = new DarkScene();
+                }
+            }
+            if (glfwGetKey(window.ptr, GLFW_KEY_5) == GLFW_PRESS) {
+                if (!dynamic_cast<SeaScene*>(currentScene)) {
+                    delete currentScene;
+                    currentScene = new SeaScene();
+                }
+            }
 
             // Physics update loop
-            float fixedTimeStep = 0.005f; 
+            float fixedTimeStep = 0.003f; 
             timeAccumulator += std::min(deltaTime, 0.1f);
             while (timeAccumulator >= fixedTimeStep) {
                 double physStart = glfwGetTime();
@@ -82,6 +94,7 @@ int main()
                 timeAccumulator -= fixedTimeStep;
             }
 
+            renderer.resize(window.width, window.height);
             double rtPrepTime = renderer.render(*currentScene, window.getViewMatrix(), window.getProjectionMatrix(), window.cameraPos, window.raytracingMode, window.wireframeMode);
 
             window.update();

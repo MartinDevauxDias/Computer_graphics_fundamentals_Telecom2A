@@ -35,6 +35,8 @@ uniform mat4 invView;
 uniform mat4 invProjection;
 uniform vec3 cameraPos;
 uniform int frameCounter;
+uniform vec3 skyTop;
+uniform vec3 skyBottom;
 
 struct Ray {
     vec3 origin;
@@ -152,7 +154,7 @@ void main() {
         vec3 throughput = vec3(1.0);
         const float EPSILON = 0.005;
 
-        for (int bounce = 0; bounce < 20; bounce++) {
+        for (int bounce = 0; bounce < 50; bounce++) {
             float closestT = 1e30;
             int hitObjIdx = -1;
             int hitTriIdx = -1;
@@ -160,7 +162,6 @@ void main() {
             for (int objIdx = 0; objIdx < objectCount; objIdx++) {
                 if (intersectAABB(ray, objects[objIdx].bmin.xyz, objects[objIdx].bmax.xyz)) {
                     if (objects[objIdx].bmin.w > 0.5) {
-                        // Sphere analytic intersection
                         float t;
                         int start = int(objects[objIdx].bmax.w);
                         vec3 center = triangles[start].v0.xyz;
@@ -168,11 +169,10 @@ void main() {
                             if (t < closestT) {
                                 closestT = t;
                                 hitObjIdx = objIdx;
-                                hitTriIdx = -1; // Flag for sphere
+                                hitTriIdx = -1;
                             }
                         }
                     } else {
-                        // Mesh triangle intersection
                         int start = int(objects[objIdx].bmax.w);
                         int count = objects[objIdx].triangleCount;
                         for (int i = 0; i < count; i++) {
@@ -184,6 +184,32 @@ void main() {
                                     hitTriIdx = start + i;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            // Volumetric Glare/Glow Loop
+            for (int i = 0; i < objectCount; i++) {
+                if (objects[i].emissive.w > 0.0) {
+                    vec3 lightCenter;
+                    if (objects[i].bmin.w > 0.5) 
+                        lightCenter = triangles[int(objects[i].bmax.w)].v0.xyz;
+                    else 
+                        lightCenter = (objects[i].bmin.xyz + objects[i].bmax.xyz) * 0.5;
+                    
+                    float lightRadius = (objects[i].bmin.w > 0.5) ? objects[i].radius : 0.0;
+                    float distToLight = length(lightCenter - ray.origin);
+                    
+                    // Use a small epsilon to ensure glare is added even if the ray hits the light surface
+                    if (distToLight - lightRadius <= closestT + 1.0) { 
+                        vec3 dirToLight = (lightCenter - ray.origin) / distToLight;
+                        float dotL = dot(ray.direction, dirToLight);
+                        if (dotL > 0.0) {
+                            // Boosted and softened glare for better visibility in reflections
+                            float intensity = pow(dotL, 4096.0) * 2.0; // Concentrated core
+                            float halo = pow(dotL, 128.0) * 0.07;        // Broader atmospheric glow
+                            sampleColor += throughput * objects[i].emissive.xyz * objects[i].emissive.w * (intensity + halo) * 0.6;
                         }
                     }
                 }
@@ -202,14 +228,12 @@ void main() {
                 int baseTriIdx = int(objects[hitObjIdx].bmax.w);
 
                 if (hitTriIdx == -1) {
-                    // Sphere Normal and Material
                     vec3 center = triangles[baseTriIdx].v0.xyz;
                     vec3 hitPoint = ray.origin + ray.direction * closestT;
                     normal = normalize(hitPoint - center);
                     mat = triangles[baseTriIdx].material;
                     color = triangles[baseTriIdx].color.rgb;
                 } else {
-                    // Triangle Normal and Material
                     vec3 v0 = triangles[hitTriIdx].v0.xyz;
                     vec3 v1 = triangles[hitTriIdx].v1.xyz;
                     vec3 v2 = triangles[hitTriIdx].v2.xyz;
@@ -219,55 +243,55 @@ void main() {
                 }
                 
                 bool outside = dot(normal, ray.direction) < 0.0;
-                if (!outside) normal = -normal;
+                if (!outside) {
+                    // Absorption only for transparent materials
+                    if (mat.w > 0.0) {
+                        float absorptionStrength = 0.3;
+                        vec3 absorption = exp(-absorptionStrength * (vec3(1.0) - color) * closestT);
+                        throughput *= absorption;
+                    }
+                    normal = -normal;
+                }
                 
                 vec3 hitPoint = ray.origin + ray.direction * closestT;
-
-                // Probability-based Choice: Diffuse vs Reflect vs Refract
-                float pDiffuse = (1.0 - mat.x - mat.w);
-                float pReflect = mat.x;
-                float pRefract = mat.w;
-                
                 float r = random();
-                if (r < pDiffuse) {
-                    // Monte Carlo Diffuse: Random bounce in hemisphere
-                    ray.direction = randomInHemisphere(normal);
-                    ray.origin = hitPoint + normal * EPSILON;
-                    throughput *= color;
-                
-                } else if (r < pDiffuse + pReflect) {
-                    // Glossy Reflection
-                    vec3 reflDir = reflect(ray.direction, normal);
-                    if (mat.y > 0.0) {
-                        reflDir = normalize(mix(reflDir, randomInHemisphere(reflDir), mat.y));
+
+                if (mat.w > 0.0) {
+                    // Dielectric path (Fresnel)
+                    float ior = mat.z;
+                    float eta = outside ? (1.0 / ior) : ior;
+                    float cosTheta = min(dot(-ray.direction, normal), 1.0);
+                    float sinTheta = sqrt(1.0 - cosTheta * cosTheta);
+                    float f0 = (1.0 - ior) / (1.0 + ior); f0 *= f0;
+                    float fresnel = f0 + (1.0 - f0) * pow(1.0 - cosTheta, 5.0);
+                    
+                    if (random() < fresnel || eta * sinTheta > 1.0) {
+                        ray.direction = reflect(ray.direction, normal);
+                        ray.origin = hitPoint + normal * EPSILON;
+                    } else {
+                        ray.direction = refract(ray.direction, normal, eta);
+                        ray.origin = hitPoint - normal * EPSILON;
                     }
+                    throughput *= color;
+                } else if (r < mat.x) {
+                    // Reflection path
+                    vec3 reflDir = reflect(ray.direction, normal);
+                    if (mat.y > 0.0) reflDir = normalize(mix(reflDir, randomInHemisphere(reflDir), mat.y));
                     ray.direction = reflDir;
                     ray.origin = hitPoint + normal * EPSILON;
                     throughput *= color;
                 } else {
-                    // Refraction (Glass)
-                    float ratio = outside ? (1.0 / mat.z) : mat.z;
-                    vec3 refrDir = refract(ray.direction, normal, ratio);
-                    if (length(refrDir) < 0.01) {
-                        ray.direction = reflect(ray.direction, normal);
-                        ray.origin = hitPoint + normal * EPSILON;
-                    } else {
-                        ray.direction = refrDir;
-                        ray.origin = hitPoint - normal * EPSILON;
-                    }
+                    // Diffuse path
+                    ray.direction = randomInHemisphere(normal);
+                    ray.origin = hitPoint + normal * EPSILON;
                     throughput *= color;
                 }
             } else {
-                // Background Contribution
                 float t = 0.5 * (ray.direction.y + 1.0);
-                vec3 skyColor = mix(vec3(1.0, 1.0, 1.0), vec3(0.5, 0.7, 1.0), t);
-                vec3 sunDir = normalize(vec3(3.0, 5.0, 2.0));
-                float sun = pow(max(0.0, dot(ray.direction, sunDir)), 64.0);
-                sampleColor += throughput * (skyColor + vec3(1.0, 0.9, 0.7) * sun * 2.0);
+                sampleColor += throughput * mix(skyBottom, skyTop, t);
                 break;
             }
 
-            // Russian Roulette or Early Break
             if (length(throughput) < 0.01) break;
         }
         currentFrameColor += sampleColor;

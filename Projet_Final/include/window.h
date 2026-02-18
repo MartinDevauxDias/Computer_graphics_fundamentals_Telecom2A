@@ -32,6 +32,7 @@ public:
     bool raytracingMode = false;
     bool leftMousePressed = false;
     bool rightMousePressed = false;
+    bool isFullscreen = false;
 
     Window(unsigned int w, unsigned int h, const char* title);
     ~Window();
@@ -39,6 +40,7 @@ public:
     bool shouldClose();
     void update(); // Swaps buffers and polls events
     void processInput(Scene& currentScene, float deltaTime);
+    void toggleFullscreen();
 
     glm::mat4 getViewMatrix();
     glm::mat4 getProjectionMatrix();
@@ -46,6 +48,8 @@ public:
 private:
     float movementSpeed = 5.0f;
     float mouseSensitivity = 0.1f;
+
+    int windowedX, windowedY, windowedWidth, windowedHeight;
 
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
