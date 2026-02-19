@@ -79,12 +79,16 @@ void Renderer::renderRaster(Scene& scene, const glm::mat4& view, const glm::mat4
     rasterShader.set("projection", projection);
 
     for (auto* obj : scene.objects) {
-        if (obj->fixedObject) {
-            rasterShader.set("objectColor", 0.3f, 0.5f, 0.3f);
-        } else if (obj->collisionRadius > 0.0f) {
-            rasterShader.set("objectColor", 1.0f, 0.2f, 0.2f);
+        if (obj->material) {
+            rasterShader.set("objectColor", obj->material->diffuse);
         } else {
-            rasterShader.set("objectColor", 0.4f, 0.4f, 0.8f);
+            if (obj->fixedObject) {
+                rasterShader.set("objectColor", 0.3f, 0.5f, 0.3f);
+            } else if (obj->collisionRadius > 0.0f) {
+                rasterShader.set("objectColor", 1.0f, 0.2f, 0.2f);
+            } else {
+                rasterShader.set("objectColor", 0.4f, 0.4f, 0.8f);
+            }
         }
         obj->draw(rasterShader);
     }

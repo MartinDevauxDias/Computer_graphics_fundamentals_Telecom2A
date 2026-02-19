@@ -1,0 +1,409 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{booktabs}
+
+\geometry{margin=2.5cm}
+
+% --- Code Styling ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single
+}
+
+% --- Title Information ---
+\title{Real-time Hybrid Physics and Path Tracing Engine \\ \large IGR Project Report}
+\author{Martin --- Telecom Paris}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report details the implementation of a real-time rendering engine combining classical rigid-body dynamics with a Monte Carlo path tracer implemented in GLSL Compute Shaders. The project explores the synergy between physical simulation (collisions, impulse response) and physically-based rendering (PBR), including dielectric materials, volumetric glare approximations, and dynamic mesh animation for aquatic surfaces.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The objective of this project was to develop a sandbox environment capable of simulating complex optical phenomena while maintaining interactive physics. Unlike traditional rasterization-based pipelines, this engine utilizes a path-tracing approach to resolve global illumination, including soft shadows, reflections, and refractions.
+
+\section{Project Evolution and Implementation Timeline}
+The development of this engine followed an incremental approach, evolving from basic geometry processing to a full-scale hybrid simulator.
+
+\subsection{Phase 1: Geometry and Subdivision}
+The project began with the fundamental building block: the triangle. Early implementation focused on loading simple meshes and performing subdivision to increase geometric detail. We implemented the Loop subdivision scheme, which defines new vertex positions based on a weighted average of adjacent vertices.
+
+\begin{equation}
+v_{new} = (1 - n\beta) v_{old} + \beta \sum_{i=1}^{n} v_i
+\end{equation}
+
+Here, $v_{old}$ is the original vertex position, $n$ represents the valence (number of connected edges) of the vertex, $v_i$ are the positions of the neighboring vertices, and $\beta$ is a weighting factor derived from $n$. This phase was crucial for understanding how to manage dynamic connectivity and vertex buffers before moving into simulation.
+
+\subsection{Phase 2: Physics Foundations}
+Initial physics experiments utilized a basic vertex-based solver. The original model simulated collisions by checking if any vertex of a cube intersected the ground plane ($y=0$). 
+\begin{itemize}
+    \item \textbf{Early Model}: Simple force restitution without friction. It resulted in "bouncy" but unrealistic behavior where objects would rotate incorrectly or pass through each other.
+    \item \textbf{Collision Challenges}: Implementing object-to-object collisions introduced significant jitter and "energy gain," where objects would shake until they exploded out of the scene.
+    \item \textbf{Current Solution}: To solve this, we moved to the impulse-based solver described in Section 2. We also implemented \texttt{\#pragma omp parallel for} to parallelize the collision detection phase. This allowed us to run the simulation at very high frequencies (small $dt$) with multiple sub-steps per frame, ensuring stability even during complex interactions.
+\end{itemize}
+
+\subsection{Phase 3: From Raytracing to Path Tracing}
+The rendering pipeline underwent a major refactor after the first prototype.
+\begin{itemize}
+    \item \textbf{Prototype}: A simple recursive raytracer that handled a single bounce (perfect reflection) and used a hardcoded sky gradient.
+    \item \textbf{Architectural Refactor}: The code was restructured into a modular hierarchy:
+    \begin{itemize}
+        \item \texttt{Renderer}: Handles the OpenGL context and Compute Shader dispatching.
+        \item \texttt{Scene}: Manages the collection of objects and light sources.
+        \item \texttt{RigidSolver}: Encapsulates the physics logic, independent of the rendering.
+        \item \texttt{Mesh/Object}: Handles geometry and material properties.
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{screenshots/Blinn-Phong Shading.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{screenshots/Raytraced Box.png}
+    \caption{Left: The original rasterization output with Blinn-Phong shading. Right: The same geometry resolved via the Path Tracing pipeline with soft shadows and recursive reflections.}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Monte Carlo Transition}: The final phase involved implementing the full Monte Carlo Path Tracer. This added support for diffuse inter-reflections, soft shadows, and the complex glare effects discussed in Section 5.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/Main Scene.png}
+    \caption{The engine's main interface showing various materials (Gold, Glass, Matte) reacting to a central light source.}
+\end{figure}
+
+\section{Physics Engine Architecture}
+The physics module is based on a rigid-body solver using a discrete-time integration scheme.
+
+\subsection{Numerical Integration}
+We employ a semi-implicit Euler integration for both linear and angular components. The state of each object is defined by its position $\mathbf{x}$, velocity $\mathbf{v}$, orientation quaternion $\mathbf{q}$, and angular velocity $\omega$.
+
+\begin{equation}
+\mathbf{v}_{t+dt} = \mathbf{v}_t + \frac{\mathbf{F}_{net}}{m} dt, \quad \mathbf{x}_{t+dt} = \mathbf{x}_t + \mathbf{v}_{t+dt} dt
+\end{equation}
+
+In these equations, $\mathbf{F}_{net}$ is the sum of all forces acting on the body, $m$ is the mass, and $dt$ is the discrete time step. For rotations, we update the orientation using the angular velocity:
+\begin{equation}
+\mathbf{q}_{t+dt} = \text{normalize}\left( \mathbf{q}_t + \frac{1}{2} (\omega \otimes \mathbf{q}_t) dt \right)
+\end{equation}
+
+where $\otimes$ denotes quaternion multiplication. The integration step is parallelized using OpenMP to handle large object counts efficiently:
+
+\begin{lstlisting}[language=C++]
+#pragma omp parallel for
+for (int i = 0; i < (int)objects.size(); ++i) {
+    Object* obj = objects[i];
+    if (obj->fixedObject) continue;
+    obj->position += obj->velocity * deltaTime;
+    
+    float angVelLen = glm::length(obj->angularVelocity);
+    if (angVelLen > 0.0001f) {
+        glm::vec3 axis = obj->angularVelocity / angVelLen;
+        float angle = angVelLen * deltaTime;
+        glm::quat deltaRot = glm::angleAxis(angle, axis);
+        obj->orientation = glm::normalize(deltaRot * obj->orientation);
+    }
+}
+\end{lstlisting}
+
+\subsection{Sub-stepping and Temporal Stability}
+A critical feature of the physics engine is the use of a fixed time step with an accumulator. Instead of simulating with a variable $\Delta t$ tied to the frame rate (which can lead to non-deterministic behavior and instabilities during frame drops), we use a constant discrete step $dt_{fixed} = 3ms$.
+
+For each rendering frame, we calculate multiple iterations of the physics update:
+\begin{equation}
+N_{steps} = \left\lfloor \frac{\Delta t_{frame} + \text{remainder}}{dt_{fixed}} \right\rfloor
+\end{equation}
+
+This sub-stepping approach is essential for several reasons:
+\begin{itemize}
+    \item \textbf{High-Speed Collisions}: Small objects moving at high velocities might "tunnel" through thin geometry if the time step is too large. Frequent updates ensure the collision detection phase catches these intersections.
+    \item \textbf{Energy Conservation}: Semi-implicit Euler integration is relatively stable but can still gain energy if the steps are large. Reducing the step size minimizes this error.
+    \item \textbf{Convergence of the Impulse Solver}: In complex scenarios like physical stacking, multiple collisions affect the same body. Smaller steps allow the impulse propagation to stabilize more effectively across the structure.
+\end{itemize}
+
+\subsection{Collision Detection and Response}
+The solver implements an impulse-based model for collision response. When a collision is detected at a contact point with normal $\mathbf{n}$, the required impulse $J$ to satisfy the law of restitution $e$ is calculated as:
+
+\begin{equation}
+J = \frac{-(1 + e) \mathbf{v}_{rel} \cdot \mathbf{n}}{\mathbf{n} \cdot \mathbf{n} (\frac{1}{m_A} + \frac{1}{m_B}) + (\mathbf{I}_A^{-1}(\mathbf{r}_A \times \mathbf{n}) \times \mathbf{r}_A + \mathbf{I}_B^{-1}(\mathbf{r}_B \times \mathbf{n}) \times \mathbf{r}_B) \cdot \mathbf{n}}
+\end{equation}
+
+Here, $m_A$ and $m_B$ are the masses of the colliding bodies, $\mathbf{I}_A^{-1}$ and $\mathbf{I}_B^{-1}$ are their respective inverse inertia tensors in world space, $\mathbf{r}_A$ and $\mathbf{r}_B$ are the vectors from the center of mass to the contact point, and $\mathbf{v}_{rel}$ is the relative velocity at the point of impact.
+
+\section{Vertex Animation and GPU Synchronization}
+One of the unique features of the engine is the support for dynamic, CPU-animated meshes within a ray-tracing context. In Scene 5 (Sea Scene), we proceduralize water waves on the host side and synchronize the vertex data with the GPU every frame.
+
+\subsection{Wave Synthesis}
+We use a sum of Gerstner-like sinusoids to perturb the grid height. To give the water a "rippled" or "peaky" appearance, we utilize an absolute sine formulation:
+\begin{lstlisting}[language=C++]
+float h = 0.0f;
+h += 0.4f * (1.0f - std::abs(std::sin(0.15f * x + 1.2f * t)));
+h += 0.25f * (1.0f - std::abs(std::sin(0.12f * z + 0.8f * t + 1.0f)));
+h += 0.15f * (1.0f - std::abs(std::sin(0.08f * (x + z) + 1.5f * t)));
+\end{lstlisting}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/Sea Mesh.png}
+    \caption{The dynamic sea mesh using a 5x5 grid resolution to maintain optimization while enabling real-time vertex displacement.}
+\end{figure}
+
+\subsection{Data Synchronization (SSBOs)}
+Because the Compute Shader needs current triangle positions for intersection testing, we must update the Shader Storage Buffer Objects (SSBO). This is handled by mapping the vertex data and re-calculating normals on the CPU before a \texttt{glBufferSubData} call.
+
+\section{GPU Path Tracing Pipeline}
+Rendering is offloaded to the GPU via OpenGL 4.5 Compute Shaders. All scene geometry, including mesh triangles and object properties, is uploaded to SSBOs.
+
+\subsection{Monte Carlo Integration}
+The renderer solves the rendering equation by sampling paths through the scene. For each pixel, multiple rays are jittered for anti-aliasing. The governing equation for the outgoing radiance $L_o$ is:
+
+\begin{equation}
+L_o(\mathbf{p}, \omega_o) = \int_{\Omega} L_i(\mathbf{p}, \omega_i) f_r(\mathbf{p}, \omega_i, \omega_o) \cos \theta_i d\omega_i
+\end{equation}
+
+where $\mathbf{p}$ is the hit point, $\omega_o$ the outgoing direction, $L_i$ the incoming radiance from direction $\omega_i$, $f_r$ the Bidirectional Reflectance Distribution Function (BRDF), and $\Omega$ the hemisphere of possible incoming light directions. To handle the hemisphere sampling required for diffuse reflections, we implement a cosine-weighted distribution.
+
+\begin{lstlisting}[language=GLSL]
+// Cosine-weighted hemisphere sampling
+vec3 randomInHemisphere(vec3 normal) {
+    float u1 = random();
+    float u2 = random();
+    float r = sqrt(u1);
+    float theta = 2.0 * 3.14159 * u2;
+    vec3 localDir = vec3(r * cos(theta), r * sin(theta), sqrt(max(0.0, 1.0 - u1)));
+    
+    vec3 up = abs(normal.z) < 0.999 ? vec3(0,0,1) : vec3(1,0,0);
+    vec3 tangent = normalize(cross(up, normal));
+    vec3 bitangent = cross(normal, tangent);
+    return normalize(tangent * localDir.x + bitangent * localDir.y + normal * localDir.z);
+}
+\end{lstlisting}
+
+\subsection{Ray-Triangle Intersection}
+We utilize the Möller-Trumbore algorithm for its efficiency and low memory footprint, as it avoids storing plane equations for every triangle.
+
+\begin{lstlisting}[language=GLSL]
+bool intersectTriangle(Ray ray, vec3 v0, vec3 v1, vec3 v2, out float t) {
+    vec3 edge1 = v1 - v0, edge2 = v2 - v0;
+    vec3 h = cross(ray.direction, edge2);
+    float a = dot(edge1, h);
+    if (a > -0.00001 && a < 0.00001) return false;
+    float f = 1.0 / a;
+    vec3 s = ray.origin - v0;
+    float u = f * dot(s, h);
+    if (u < 0.0 || u > 1.0) return false;
+    vec3 q = cross(s, edge1);
+    float v = f * dot(ray.direction, q);
+    if (v < 0.0 || u + v > 1.0) return false;
+    t = f * dot(edge2, q);
+    return t > 0.00001;
+}
+\end{lstlisting}
+
+\subsection{Temporal Accumulation}
+To reduce the variance (noise) without skyrocketing the per-frame sample count, we implement a temporal accumulation buffer. If the scene is static, each new frame is averaged with previous ones, effectively increasing the samples per pixel over time.
+
+\begin{lstlisting}[language=GLSL]
+vec3 finalColor = currentFrameColor;
+if (frameCounter > 1) {
+    vec3 prevColor = imageLoad(accumulationBuffer, texelCoord).rgb;
+    // Iterative average
+    finalColor = mix(prevColor, currentFrameColor, 1.0 / float(frameCounter));
+}
+imageStore(accumulationBuffer, texelCoord, vec4(finalColor, 1.0));
+\end{lstlisting}
+
+\subsection{Fresnel and Dielectric Materials}
+To simulate water and glass, we use the Schlick approximation for the Fresnel coefficient $R(\theta)$:
+\begin{equation}
+R(\theta) = R_0 + (1 - R_0)(1 - \cos \theta)^5, \quad R_0 = \left( \frac{n_1 - n_2}{n_1 + n_2} \right)^2
+\end{equation}
+
+where $\theta$ is the angle of incidence, and $n_1, n_2$ are the refractive indices of the two media. Additionally, we implement Beer-Lambert absorption for rays traveling inside transparent volumes:
+\begin{equation}
+I(\text{dist}) = I_0 \cdot e^{-\sigma \cdot \text{dist}}
+\end{equation}
+
+where $I_0$ is the initial light intensity, $\sigma$ is the absorption coefficient (related to the material color), and \textit{dist} is the distance traveled within the medium.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{screenshots/Glass Texture.png}
+    \caption{Implementation of dielectric materials using Schlick's approximation for reflections and Beer-Lambert absorption for volume thickness.}
+\end{figure}
+
+\section{Optical Effects and Challenges}
+
+\subsection{Volumetric Glare Approximation}
+One of the primary difficulties was simulating atmospheric scattering (glare) without the heavy cost of volumetric path marching. We implemented a power-law approximation based on the angular distance between the ray direction $\mathbf{d}$ and the vector to the light $\mathbf{l}$. 
+
+This effect simulates the "glow" seen around strong light sources in a humid or dusty environment. By separating the core intensity from the atmospheric halo, we can create a spherical illumination volume even with purely angular math.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/Glare Mirroring.png}
+    \caption{Visualizing the depth-aware glare approximation. The glow is masked by geometry to prevent it from appearing in front of occluding objects.}
+\end{figure}
+
+\begin{lstlisting}[language=GLSL]
+// Simplified Glare Loop logic
+for (int i = 0; i < objectCount; i++) {
+    if (objects[i].emissive.w > 0.0) {
+        float dotL = dot(ray.direction, dirToLight);
+        if (dotL > 0.0) {
+            float intensity = pow(dotL, 4096.0) * 2.0; // Sharp Light Core
+            float halo = pow(dotL, 128.0) * 0.07;      // Diffuse Atmospheric Halo
+            sampleColor += throughput * lightColor * (intensity + halo);
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{screenshots/Scatter.png}
+    \caption{Testing atmospheric scattering using angular distance. The glare intensity follows a power-law distribution to simulate light bleeding.}
+\end{figure}
+
+\subsection{Implementation Hardships}
+\textbf{Physics Fine-tuning:} Stability was the greatest challenge. Small errors in the inertia tensor or the collision epsilon caused objects to "jitter" or explode. Bypassing the solver for animated meshes (like the sea) was necessary to prevent unwanted collision resolution between fixed planes and moving vertices.
+
+\textbf{Noise and Convergence:} As a Monte Carlo-based system, the engine suffers from high-frequency noise. While we implemented accumulation, it requires low movement to converge. Reducing the triangle count for the sea grid (grid resolution of 5x5) was an essential optimization to maintain frame rates above 30 FPS.
+
+\section{Scene Gallery and Visual Analysis}
+To evaluate the performance and correctness of the engine, we designed five distinct scenes, each targeting a specific subset of the system's capabilities.
+
+\subsection{Scene 1: Rigid Body Stress Test}
+This scene is dedicated to validating the physics solver. It consists of a $4\times4\times4$ "cube of cubes" (64 individual rigid bodies) stacked in a grid.
+\begin{itemize}
+    \item \textbf{Objective}: Test stable stacking and multi-object collision resolution.
+    \item \textbf{Interaction}: The user can "shoot" high-velocity spheres into the structure to observe the impulse propagation and subsequent collapse.
+    \item \textbf{Key Result}: Demonstrates the stability of the impulse-based solver and the efficiency of the OpenMP-parallelized collision loops.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/Box Mesh.png}
+    \caption{Physics stress test: 64 rigid bodies interacting simultaneously with minimal jitter.}
+\end{figure}
+
+\subsection{Scene 2: Material Properties and Monte Carlo Noise}
+A showcase of the PBR material system, featuring various spheres (Gold, Silver, Glass, and Matte) set before a large mirror plane and illuminated by an artificial sun.
+\begin{itemize}
+    \item \textbf{Objective}: Visualize the difference between specular and rough surface transport.
+    \item \textbf{Visual Analysis}: This scene highlights the "noise" or "grain" inherent in Monte Carlo integration, particularly on rough materials where the probability density function (PDF) must sample a wider hemisphere.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{screenshots/Roughness Noise.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{screenshots/Roughness.png}
+    \caption{Left: Monte Carlo noise visible during early convergence on rough surfaces. Right: Converged materials after temporal accumulation.}
+\end{figure}
+
+\subsection{Scene 3: Recursive Mirror Room}
+A single mesh object placed inside a "box" where all walls are perfect mirrors. 
+\begin{itemize}
+    \item \textbf{Objective}: Study the effect of recursion depth (ray bounces) on global illumination.
+    \item \textbf{Comparison}: By toggling between 2 bounces and 12 bounces, one can see the "hall of mirrors" effect emerge as light paths are allowed to travel further through the scene before termination.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{screenshots/5 bounces.png}
+    \hfill
+    \includegraphics[width=0.45\textwidth]{screenshots/50 bounces - 1.png}
+    \caption{Visualizing ray depth. Left: 5 bounces results in black surfaces where light terminates early. Right: 50 bounces enables the "Hall of Mirrors" effect.}
+\end{figure}
+
+\subsection{Scene 4: Low-Light Specular Response}
+Set in a void with a dark sky, this scene features one central sphere and three dim, colored light sources.
+\begin{itemize}
+    \item \textbf{Objective}: Verify the photometric accuracy of light reflection on mirrors.
+    \item \textbf{Observation}: The mirror-like sphere correctly picks up the three distinct light sources, proving that the bounce logic correctly handles light transport even in low-energy environments.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{screenshots/Mirror Lighting.png}
+    \caption{Testing specular reflection under colored light sources. The sphere correctly reflects the discrete light positions.}
+\end{figure}
+
+\subsection{Scene 5: The Ocean Scene}
+The most complex scene, combining vertex animation, dual-layer transparency, and a high-intensity emissive sun near the horizon.
+\begin{itemize}
+    \item \textbf{Objective}: Stress-test the hybrid nature of the engine (Animation + Ray Tracing).
+    \item \textbf{Optical Complexity}: This scene brings to light the difficulty of the glare approximation. Managing the glare intensity so that it reflects in the moving waves without "bleeding" through the objects is the primary challenge here.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/Sea.png}
+    \caption{Final result of the Sea Scene, featuring animated waves, reflections of the glare, and dual-layer water depth.}
+\end{figure}
+
+\section{Performance Analysis and Results}
+The performance of the path tracer is primarily limited by the number of samples per pixel (SPP) and the recursion depth (bounces).
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Configuration} & \textbf{Samples} & \textbf{Max Bounces} & \textbf{Frame Time (ms)} \\ \midrule
+Draft Mode             & 1                & 2                    & 2.2                      \\
+Interactive            & 4                & 6                    & 7.5                      \\
+High Quality           & 16               & 12                   & 29.8                     \\ \bottomrule
+\end{tabular}
+\caption{Rendering performance on a high-end Linux desktop (Scene 3 - Mirror Scene).}
+\end{table}
+
+The "Firefly" artifacting (isolated bright pixels) was a recurring issue when dealing with high-intensity emissive sources. This was partially mitigated using a clamping threshold on the sample contribution, though at the expense of energy conservation.
+
+\section{Conclusion}
+This project demonstrates the viability of hybrid engines. While physically-based effects like sub-surface scattering and true volumetric glare are difficult to implement in real-time, mathematical approximations can yield visually compelling results for educational and research purposes.
+
+\begin{thebibliography}{9}
+\bibitem{pbrt} Pharr, M., Jakob, W., and Humphreys, G. (2016). \textit{Physically Based Rendering: From Theory To Implementation}. Morgan Kaufmann.
+\bibitem{baraff} Baraff, D. (1997). \textit{An Introduction to Rigid Body Simulation}. SIGGRAPH Course Notes.
+\end{thebibliography}
+
+\end{document}

@@ -43,6 +43,10 @@ private:
     // These assets belong ONLY to this scene
     Mesh* SphereMesh = nullptr;
     Material* SphereMaterial = nullptr;
+    Mesh* boxMesh = nullptr;
+    std::vector<Material*> boxMaterials;
+    Mesh* groundMesh = nullptr;
+    Material* groundMaterial = nullptr;
 };
 
 

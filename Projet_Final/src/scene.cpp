@@ -40,34 +40,49 @@ PhysicsStackScene::PhysicsStackScene()
     // Create assets needed for this specific scene
     SphereMesh = Icosahedron::createIcosphere(1.0f, 2);
     SphereMaterial = new Material();
-    SphereMaterial->diffuse = glm::vec3(0.9f, 0.9f, 0.9f);
+    SphereMaterial->diffuse = glm::vec3(0.6f, 0.1f, 0.1f); // Darker red
     SphereMaterial->reflectivity = 0.9f;
-    SphereMaterial->roughness = 0.05f;
+    SphereMaterial->roughness = 0.0f;
 
     // Create shared assets for the boxes and ground
-    Mesh *boxMesh = new Mesh({}, {});
+    boxMesh = new Mesh({}, {});
     boxMesh->addCube(1.0f);
     for (int i = 0; i < 1; ++i)
         boxMesh->subdivideLinear();
-    Material *boxMaterial = new Material();
-    boxMaterial->diffuse = glm::vec3(0.4f, 0.4f, 0.8f);
+    
+    // Create various colors for the cubes (Balanced "Candy" Palette)
+    std::vector<glm::vec3> colors = {
+        glm::vec3(0.937f, 0.325f, 0.314f), // Soft Vivid Red
+        glm::vec3(1.0f, 0.655f, 0.150f),   // Soft Vivid Orange
+        glm::vec3(0.937f, 0.933f, 0.345f), // Soft Vivid Yellow
+        glm::vec3(0.400f, 0.733f, 0.416f), // Soft Vivid Green
+        glm::vec3(0.259f, 0.647f, 0.960f), // Soft Vivid Blue
+        glm::vec3(0.670f, 0.278f, 0.737f)  // Soft Vivid Purple
+    };
 
-    Mesh *groundMesh = new Mesh({}, {});
+    for (const auto& color : colors) {
+        Material* m = new Material();
+        m->diffuse = color;
+        boxMaterials.push_back(m);
+    }
+
+    groundMesh = new Mesh({}, {});
     groundMesh->addPlan(15.0f);
-    Material *groundMaterial = new Material();
+    groundMaterial = new Material();
     groundMaterial->diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
     groundMaterial->reflectivity = 0.4f; // Semi-reflective floor
-    groundMaterial->roughness = 0.1f;
+    groundMaterial->roughness = 0.0f;
 
     // Create the stack of boxes
     float groundLevel = -2.0f;
+    int colorIdx = 0;
     for (int y = 0; y < 4; ++y)
     {
         for (int x = 0; x < 4; ++x)
         {
             for (int z = 0; z < 4; ++z)
             {
-                Object *box = new Object(boxMesh, boxMaterial);
+                Object *box = new Object(boxMesh, boxMaterials[colorIdx % boxMaterials.size()]);
                 box->setPosition(glm::vec3(
                     (x - 1.5f) * 1.0f,
                     groundLevel + 0.5f + y * 1.0f,
@@ -75,6 +90,7 @@ PhysicsStackScene::PhysicsStackScene()
                 box->setAsBox(1.0f, 1.0f, 1.0f, 1.0f);
                 box->restitution = 0.0f;
                 this->addObject(box);
+                colorIdx++;
             }
         }
     }
@@ -100,6 +116,24 @@ PhysicsStackScene::~PhysicsStackScene()
     if (SphereMaterial)
     {
         delete SphereMaterial;
+    }
+    if (boxMesh)
+    {
+        boxMesh->cleanup();
+        delete boxMesh;
+    }
+    for (auto m : boxMaterials)
+    {
+        delete m;
+    }
+    if (groundMesh)
+    {
+        groundMesh->cleanup();
+        delete groundMesh;
+    }
+    if (groundMaterial)
+    {
+        delete groundMaterial;
     }
     // The base class destructor will handle cleaning the `objects` vector.
 }

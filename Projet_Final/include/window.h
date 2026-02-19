@@ -41,6 +41,7 @@ public:
     void update(); // Swaps buffers and polls events
     void processInput(Scene& currentScene, float deltaTime);
     void toggleFullscreen();
+    void saveScreenshot();
 
     glm::mat4 getViewMatrix();
     glm::mat4 getProjectionMatrix();

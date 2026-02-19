@@ -135,7 +135,7 @@ void main() {
     rng_state = hash(uint(texelCoord.x + texelCoord.y * size.x + frameCounter * 71939));
 
     vec3 currentFrameColor = vec3(0.0);
-    int samples = 8; // Number of Monte Carlo samples per pixel
+    int samples = 16; // Number of Monte Carlo samples per pixel
 
     for (int s = 0; s < samples; s++) {
         // Anti-aliasing / Sub-pixel jitter
@@ -154,7 +154,7 @@ void main() {
         vec3 throughput = vec3(1.0);
         const float EPSILON = 0.005;
 
-        for (int bounce = 0; bounce < 50; bounce++) {
+        for (int bounce = 0; bounce < 5; bounce++) {
             float closestT = 1e30;
             int hitObjIdx = -1;
             int hitTriIdx = -1;

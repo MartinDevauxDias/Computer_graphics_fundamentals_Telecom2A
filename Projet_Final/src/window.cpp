@@ -1,6 +1,12 @@
 #include "window.h"
-#include "scene.h" // Include scene.h for the processInput function
+#include "scene.h" 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <ctime>
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "../external/glfw/deps/stb_image_write.h"
 
 Window::Window(unsigned int w, unsigned int h, const char *title) : width(w), height(h)
 {
@@ -81,6 +87,20 @@ void Window::processInput(Scene &currentScene, float deltaTime)
         f11Pressed = false;
     }
 
+    static bool pPressed = false;
+    if (glfwGetKey(ptr, GLFW_KEY_P) == GLFW_PRESS)
+    {
+        if (!pPressed)
+        {
+            saveScreenshot();
+            pPressed = true;
+        }
+    }
+    else
+    {
+        pPressed = false;
+    }
+
     // Camera movement
     float speed = movementSpeed * deltaTime;
     glm::vec3 front_horizontal = glm::normalize(glm::vec3(cameraFront.x, 0.0f, cameraFront.z));
@@ -130,6 +150,38 @@ void Window::toggleFullscreen()
     else
     {
         glfwSetWindowMonitor(ptr, NULL, windowedX, windowedY, windowedWidth, windowedHeight, 0);
+    }
+}
+
+void Window::saveScreenshot()
+{
+    std::vector<unsigned char> pixels(3 * width * height);
+    glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels.data());
+
+    // Flip vertically (OpenGL starts from bottom-left)
+    std::vector<unsigned char> flippedPixels(3 * width * height);
+    for (int y = 0; y < (int)height; y++)
+    {
+        for (int x = 0; x < (int)width; x++)
+        {
+            flippedPixels[3 * (x + (height - 1 - y) * width) + 0] = pixels[3 * (x + y * width) + 0];
+            flippedPixels[3 * (x + (height - 1 - y) * width) + 1] = pixels[3 * (x + y * width) + 1];
+            flippedPixels[3 * (x + (height - 1 - y) * width) + 2] = pixels[3 * (x + y * width) + 2];
+        }
+    }
+
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    char buf[128];
+    strftime(buf, sizeof(buf), "screenshots/screenshot_%Y%m%d_%H%M%S.png", ltm);
+
+    if (stbi_write_png(buf, width, height, 3, flippedPixels.data(), width * 3))
+    {
+        std::cout << "Screenshot saved to " << buf << std::endl;
+    }
+    else
+    {
+        std::cerr << "Failed to save screenshot!" << std::endl;
     }
 }
 
