@@ -43,7 +43,6 @@ struct Ray {
     vec3 direction;
 };
 
-// Better pseudo-random generator
 uint rng_state;
 uint hash(uint x) {
     x = ((x >> 16) ^ x) * 0x45d9f3b;
@@ -57,7 +56,7 @@ float random() {
     return float(rng_state & 0xFFFFFFu) / 16777216.0;
 }
 
-// Improved random hemisphere sampling
+// [Cosine-weighted hemisphere sampling]
 vec3 randomInHemisphere(vec3 normal) {
     float u1 = random();
     float u2 = random();
@@ -71,7 +70,7 @@ vec3 randomInHemisphere(vec3 normal) {
     return normalize(tangent * localDir.x + bitangent * localDir.y + normal * localDir.z);
 }
 
-// Ray-AABB intersection
+// [AABB culling]
 bool intersectAABB(Ray ray, vec3 bmin, vec3 bmax) {
     vec3 invDir = 1.0 / ray.direction;
     vec3 t0 = (bmin - ray.origin) * invDir;
@@ -83,7 +82,7 @@ bool intersectAABB(Ray ray, vec3 bmin, vec3 bmax) {
     return t_start <= t_end && t_end >= 0.0;
 }
 
-// Möller-Trumbore intersection algorithm
+// [Möller-Trumbore]
 bool intersectTriangle(Ray ray, vec3 v0, vec3 v1, vec3 v2, out float t) {
     vec3 edge1 = v1 - v0;
     vec3 edge2 = v2 - v0;
@@ -189,7 +188,7 @@ void main() {
                 }
             }
 
-            // Volumetric Glare/Glow Loop
+            // [Volumetric Glare]
             for (int i = 0; i < objectCount; i++) {
                 if (objects[i].emissive.w > 0.0) {
                     vec3 lightCenter;
@@ -201,14 +200,12 @@ void main() {
                     float lightRadius = (objects[i].bmin.w > 0.5) ? objects[i].radius : 0.0;
                     float distToLight = length(lightCenter - ray.origin);
                     
-                    // Use a small epsilon to ensure glare is added even if the ray hits the light surface
                     if (distToLight - lightRadius <= closestT + 1.0) { 
                         vec3 dirToLight = (lightCenter - ray.origin) / distToLight;
                         float dotL = dot(ray.direction, dirToLight);
                         if (dotL > 0.0) {
-                            // Boosted and softened glare for better visibility in reflections
-                            float intensity = pow(dotL, 4096.0) * 2.0; // Concentrated core
-                            float halo = pow(dotL, 128.0) * 0.07;        // Broader atmospheric glow
+                            float intensity = pow(dotL, 4096.0) * 2.0; // core
+                            float halo = pow(dotL, 128.0) * 0.07;        // atmospheric glow
                             sampleColor += throughput * objects[i].emissive.xyz * objects[i].emissive.w * (intensity + halo) * 0.6;
                         }
                     }
@@ -244,7 +241,7 @@ void main() {
                 
                 bool outside = dot(normal, ray.direction) < 0.0;
                 if (!outside) {
-                    // Absorption only for transparent materials
+                    // [Beer-Lambert absorption]
                     if (mat.w > 0.0) {
                         float absorptionStrength = 0.3;
                         vec3 absorption = exp(-absorptionStrength * (vec3(1.0) - color) * closestT);
@@ -256,8 +253,8 @@ void main() {
                 vec3 hitPoint = ray.origin + ray.direction * closestT;
                 float r = random();
 
+                // [Schlick Fresnel]
                 if (mat.w > 0.0) {
-                    // Dielectric path (Fresnel)
                     float ior = mat.z;
                     float eta = outside ? (1.0 / ior) : ior;
                     float cosTheta = min(dot(-ray.direction, normal), 1.0);

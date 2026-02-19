@@ -604,8 +604,7 @@ SeaScene::SeaScene()
         {
             float posX = x * stepSize - seaSize / 2.0f;
             float posZ = z * stepSize - seaSize / 2.0f;
-            
-            // Match the height formula at time = 0 to avoid jumping
+        
             float h = 0.0f;
             h += 0.4f * (1.0f - std::abs(std::sin(0.15f * posX)));
             h += 0.25f * (1.0f - std::abs(std::sin(0.12f * posZ + 1.0f)));
@@ -635,39 +634,39 @@ SeaScene::SeaScene()
 
     seaMesh = new Mesh(vertices, indices);
     seaMat = new Material();
-    // A mix of deep blue and surface scattering
+
     seaMat->diffuse = glm::vec3(0.1f, 0.4f, 0.6f); 
-    seaMat->reflectivity = 0.3f;  // Surface glints
+    seaMat->reflectivity = 0.3f;  
     seaMat->roughness = 0.0f; 
-    seaMat->transparency = 0.9f;  // Multi-path: 50% Dielectric, others use diffuse/reflect
-    seaMat->ior = 1.33f;         // Water IOR
+    seaMat->transparency = 0.9f;  
+    seaMat->ior = 1.33f;        
 
     seaObject = new Object(seaMesh, seaMat);
-    seaObject->fixedObject = false; // Keep non-fixed so renderer resets accumulation every frame
-    this->objects.push_back(seaObject); // DON'T use addObject to bypass physics solver
+    seaObject->fixedObject = false; 
+    this->objects.push_back(seaObject); 
 
     // --- Deep Water Layer ---
     seaBottomMat = new Material();
-    seaBottomMat->diffuse = glm::vec3(0.05f, 0.6f, 0.8f); // Very dark deep blue
-    seaBottomMat->reflectivity = 0.95f;                   // Mirror-like depth
+    seaBottomMat->diffuse = glm::vec3(0.05f, 0.6f, 0.8f);
+    seaBottomMat->reflectivity = 0.95f;                   
     seaBottomMat->roughness = 0.0f;
-    seaBottomMat->transparency = 0.1f;                    // Opaque floor
+    seaBottomMat->transparency = 0.1f;                  
 
-    seaBottomObject = new Object(seaMesh, seaBottomMat); // Reuse the same mesh
+    seaBottomObject = new Object(seaMesh, seaBottomMat); 
     seaBottomObject->fixedObject = false;
     this->objects.push_back(seaBottomObject);
 
     // --- Rising Sun ---
     sunMesh = Icosahedron::createIcosphere(1.0f, 2);
     sunMat = new Material();
-    sunMat->emissive = glm::vec3(1.0f, 0.6f, 0.2f); // Deep orange/yellow
-    sunMat->emissiveStrength = 100.0f; // Boosted for the further distance
+    sunMat->emissive = glm::vec3(1.0f, 0.6f, 0.2f); 
+    sunMat->emissiveStrength = 100.0f; 
 
     sun = new Object(sunMesh, sunMat);
     sun->setPosition(glm::vec3(0.0f, 5.0f, -120.0f)); 
     sun->setScale(glm::vec3(12.0f));
     sun->isSphere = true;
-    sun->fixedObject = false; // Non-fixed to trigger renderer reset
+    sun->fixedObject = false;
     this->objects.push_back(sun); 
 }
 
@@ -684,32 +683,29 @@ void SeaScene::step(float dt)
 {
     time += dt;
 
-    // Update sea vertices to create waves
-    float t = time * 0.4f; // Slower time
+    // [Per-frame sea mesh update]
+    float t = time * 0.4f;
     for (int i = 0; i < seaMesh->vertices.size(); ++i)
     {
         float x = seaMesh->vertices[i].position.x;
         float z = seaMesh->vertices[i].position.z;
 
-        // Sharper "triangly" peaks using 1.0 - |sin|
-        // Also reduced amplitude and slowed down the spatial frequencies
         float h = 0.0f;
         h += 0.4f * (1.0f - std::abs(std::sin(0.15f * x + 1.2f * t)));
         h += 0.25f * (1.0f - std::abs(std::sin(0.12f * z + 0.8f * t + 1.0f)));
         h += 0.15f * (1.0f - std::abs(std::sin(0.08f * (x + z) + 1.5f * t)));
 
-        seaMesh->vertices[i].position.y = h - 3.0f; // Lowered baseline to stay below camera
+        seaMesh->vertices[i].position.y = h - 3.0f; 
     }
     
-    // Recompute normals and update GPU buffers for the animated mesh
+
     seaMesh->recomputeNormals();
     seaMesh->updateBuffers();
 
-    // Offset the bottom layer slightly below the surface to avoid Z-fighting 
-    // and provide that "thickness" look
+
     seaBottomObject->setPosition(glm::vec3(0.0f, -0.2f, 0.0f)); 
     
-    // Smoothly rise the sun (slower)
+
     glm::vec3 sunPos = sun->position;
     sunPos.y = 5.0f + 2.0f * std::sin(time * 0.05f); 
     sun->setPosition(sunPos);

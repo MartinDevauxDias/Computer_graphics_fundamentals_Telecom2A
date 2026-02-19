@@ -33,8 +33,10 @@ void RigidSolver::step(float deltaTime) {
     for (int i = 0; i < (int)objects.size(); ++i) {
         Object* obj = objects[i];
         if (obj->fixedObject) continue;
+        // [Semi-implicit Euler integration]
         obj->velocity += gravity * deltaTime; 
         
+        // [Damping]
         obj->velocity *= 0.999f;
         obj->angularVelocity *= 0.999f;
     }
@@ -111,6 +113,7 @@ void RigidSolver::solve(float dt) {
 
         // Bias
         float restitution = (c.objB) ? std::min(c.objA->restitution, c.objB->restitution) : c.objA->restitution;
+        // [Baumgarte stabilization]
         c.bias = (beta / dt) * std::max(0.0f, c.penetration - slop);
         
         // Add restitution bias if objects are hitting hard
@@ -121,7 +124,7 @@ void RigidSolver::solve(float dt) {
         c.impulseTangent2 = 0.0f;
     }
 
-    // Solve
+    // [Projected Gauss-Seidel]
     for (int i = 0; i < iterations; ++i) {
         for (auto& c : constraints) {
             float invMA = c.objA->fixedObject ? 0.0f : 1.0f / c.objA->mass;
@@ -155,6 +158,7 @@ void RigidSolver::solve(float dt) {
                 float vt = glm::dot(t, vA_t - vB_t);
                 float lambdaT = -massT * vt;
                 
+                // [Coulomb cone]
                 float maxF = mu * c.impulseSum;
                 float oldT = impulseT;
                 impulseT = std::max(-maxF, std::min(maxF, oldT + lambdaT));
@@ -199,7 +203,6 @@ void RigidSolver::detectCollisions() {
             }
         }
 
-        // Object-to-Object checks with simplified AABB filtering
         #pragma omp for
         for (int i = 0; i < (int)objects.size(); ++i) {
             for (int j = i + 1; j < (int)objects.size(); ++j) {
@@ -278,7 +281,7 @@ void RigidSolver::detectCollisions() {
                     continue;
                 }
 
-                // Fallback to existing SAT/Sampling for Box-Box
+                // [Separating Axis Theorem]
                 OBB obbA = getOBB(A), obbB = getOBB(B);
                 float minP = 1e10f; glm::vec3 axis;
                 auto check = [&](glm::vec3 a) {
