@@ -30,7 +30,7 @@ void Scene::addObject(Object *obj)
     solver.addObject(obj);
 }
 
-// Base implementation does nothing.
+
 void Scene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, const glm::mat4 &view, const glm::mat4 &projection) {}
 
 // --- PhysicsStackScene Implementation ---
@@ -40,7 +40,7 @@ PhysicsStackScene::PhysicsStackScene()
     // Create assets needed for this specific scene
     SphereMesh = Icosahedron::createIcosphere(1.0f, 2);
     SphereMaterial = new Material();
-    SphereMaterial->diffuse = glm::vec3(0.6f, 0.1f, 0.1f); // Darker red
+    SphereMaterial->diffuse = glm::vec3(0.6f, 0.1f, 0.1f);
     SphereMaterial->reflectivity = 0.9f;
     SphereMaterial->roughness = 0.0f;
 
@@ -50,7 +50,6 @@ PhysicsStackScene::PhysicsStackScene()
     for (int i = 0; i < 1; ++i)
         boxMesh->subdivideLinear();
     
-    // Create various colors for the cubes (Balanced "Candy" Palette)
     std::vector<glm::vec3> colors = {
         glm::vec3(0.937f, 0.325f, 0.314f), // Soft Vivid Red
         glm::vec3(1.0f, 0.655f, 0.150f),   // Soft Vivid Orange
@@ -107,7 +106,6 @@ PhysicsStackScene::PhysicsStackScene()
 PhysicsStackScene::~PhysicsStackScene()
 {
     std::cout << "PhysicsStackScene destructor called." << std::endl;
-    // Clean up the assets owned ONLY by this scene
     if (SphereMesh)
     {
         SphereMesh->cleanup();
@@ -135,7 +133,6 @@ PhysicsStackScene::~PhysicsStackScene()
     {
         delete groundMaterial;
     }
-    // The base class destructor will handle cleaning the `objects` vector.
 }
 
 // --- RayTracingScene Implementation ---
@@ -147,11 +144,10 @@ RayTracingScene::RayTracingScene()
     Mesh *plane = new Mesh({}, {});
     plane->addPlan(50.0f);
 
-    // Ground: Matte but noticeably reflective "Studio" floor
     Material *groundMat = new Material();
     groundMat->diffuse = glm::vec3(0.1f, 0.1f, 0.12f);
-    groundMat->reflectivity = 0.4f; // More reflective
-    groundMat->roughness = 0.3f;    // Slightly more polished but still matte
+    groundMat->reflectivity = 0.4f; 
+    groundMat->roughness = 0.3f; 
     Object *ground = new Object(plane, groundMat);
     ground->setPosition(glm::vec3(0, -2.0f, 0));
     ground->fixedObject = true;
@@ -167,7 +163,7 @@ RayTracingScene::RayTracingScene()
     Mesh *wallPlane = new Mesh({}, {});
     wallPlane->addPlan(20.0f); // 40x40 base
     Material *wallMirrorMat = new Material();
-    wallMirrorMat->diffuse = glm::vec3(0.85f, 0.85f, 1.0f); // Soft tint
+    wallMirrorMat->diffuse = glm::vec3(0.85f, 0.85f, 1.0f); 
     wallMirrorMat->reflectivity = 1.0f;
     wallMirrorMat->roughness = 0.0f;
     Object *mirrorWall = new Object(wallPlane, wallMirrorMat);
@@ -207,7 +203,7 @@ RayTracingScene::RayTracingScene()
 
     // Common radius for most spheres to keep sizes similar
     float r = 2.0f;
-    float floorY = -2.0f + r; // Position Y so they touch the ground
+    float floorY = -2.0f + r;
 
     // 1. Silver Mirror - Pushed further to the back-right
     silverMat = new Material();
@@ -282,8 +278,8 @@ RayTracingScene::RayTracingScene()
     this->addObject(s6);
 
     // --- Physical Sun ---
-    this->skyTop = glm::vec3(0.15f, 0.21f, 0.3f);    // Dimmer, moodier blue
-    this->skyBottom = glm::vec3(0.4f, 0.4f, 0.45f);  // Dimmer grey/blue base
+    this->skyTop = glm::vec3(0.15f, 0.21f, 0.3f);    
+    this->skyBottom = glm::vec3(0.4f, 0.4f, 0.45f);  
 
     lightMesh = Icosahedron::createIcosphere(1.0f, 2);
     lightMat = new Material();
@@ -291,7 +287,7 @@ RayTracingScene::RayTracingScene()
     lightMat->emissiveStrength = 50.0f;
 
     Object *sun = new Object(lightMesh, lightMat);
-    sun->setPosition(glm::vec3(-50.0f, 30.0f, -10.0f)); // Moved to the left, facing the mirror
+    sun->setPosition(glm::vec3(-50.0f, 30.0f, -10.0f));
     sun->setScale(glm::vec3(5.0f));
     sun->isSphere = true;
     sun->fixedObject = true;
@@ -330,8 +326,8 @@ void PhysicsStackScene::processInput(GLFWwindow *window, const glm::vec3 &camera
             Object *bolt = new Object(this->SphereMesh, this->SphereMaterial);
             bolt->setPosition(cameraPos);
             bolt->setScale(glm::vec3(0.5f));
-            bolt->setAsSphere(0.5f, 2.0f);        // Lower mass from 10.0 to 2.0
-            bolt->velocity = cameraFront * 40.0f; // Directly use camera front
+            bolt->setAsSphere(0.5f, 2.0f);      
+            bolt->velocity = cameraFront * 40.0f;
             this->addObject(bolt);
 
             leftMousePressed = true;
@@ -346,16 +342,15 @@ void PhysicsStackScene::processInput(GLFWwindow *window, const glm::vec3 &camera
     {
         if (!rightMousePressed)
         {
-            // Drop high above the origin
             glm::vec3 spawnPos = glm::vec3(0.0f, 15.0f, 0.0f);
 
             // Create Large Sphere
             Object *bigSphere = new Object(SphereMesh, SphereMaterial);
             bigSphere->setPosition(spawnPos);
-            bigSphere->setScale(glm::vec3(3.0f));  // Big visual radius
-            bigSphere->setAsSphere(3.0f, 10.0f);   // Collision radius 3.0 to match visual scale
-            bigSphere->velocity = glm::vec3(0.0f); // No start velocity
-            bigSphere->restitution = 0.1f;         // Less bouncy since it's heavy
+            bigSphere->setScale(glm::vec3(3.0f));  
+            bigSphere->setAsSphere(3.0f, 10.0f);  
+            bigSphere->velocity = glm::vec3(0.0f); 
+            bigSphere->restitution = 0.1f;    
             this->addObject(bigSphere);
 
             rightMousePressed = true;
@@ -377,17 +372,17 @@ MirrorScene::MirrorScene()
     planeMesh->addPlan(roomSize);
 
     mirrorMat = new Material();
-    mirrorMat->diffuse = glm::vec3(0.90f); // Pure mirrors have no diffuse
+    mirrorMat->diffuse = glm::vec3(0.90f); 
     mirrorMat->reflectivity = 1.0f;
     mirrorMat->roughness = 0.0f;
 
     leftMirrorMat = new Material();
-    leftMirrorMat->diffuse = glm::vec3(0.3f, 0.3f, 0.8f); // Richer blue, absorbs more light
+    leftMirrorMat->diffuse = glm::vec3(0.3f, 0.3f, 0.8f);
     leftMirrorMat->reflectivity = 0.9f;                   // 90% Sharp reflection, 10% Diffuse
     leftMirrorMat->roughness = 0.0f;
 
     rightMirrorMat = new Material();
-    rightMirrorMat->diffuse = glm::vec3(0.3f, 0.8f, 0.3f); // Richer green, absorbs more light
+    rightMirrorMat->diffuse = glm::vec3(0.3f, 0.8f, 0.3f); 
     rightMirrorMat->reflectivity = 0.9f;                    // 90% Sharp reflection, 10% Diffuse
     rightMirrorMat->roughness = 0.0f;
 
@@ -423,14 +418,14 @@ MirrorScene::MirrorScene()
     // Left Wall (Position -X, needs Normal +X to face center)
     Object *leftWall = new Object(planeMesh, leftMirrorMat);
     leftWall->setPosition(glm::vec3(-halfSize, elevation, 0));
-    leftWall->setRotation(glm::vec3(0, 0, -90)); // Changed from 90 to -90
+    leftWall->setRotation(glm::vec3(0, 0, -90)); 
     leftWall->fixedObject = true;
     this->addObject(leftWall);
 
     // Right Wall (Position +X, needs Normal -X to face center)
     Object *rightWall = new Object(planeMesh, rightMirrorMat);
     rightWall->setPosition(glm::vec3(halfSize, elevation, 0));
-    rightWall->setRotation(glm::vec3(0, 0, 90)); // Changed from -90 to 90
+    rightWall->setRotation(glm::vec3(0, 0, 90)); 
     rightWall->fixedObject = true;
     this->addObject(rightWall);
 
@@ -443,8 +438,8 @@ MirrorScene::MirrorScene()
     lightMat->emissiveStrength = 20.0f;
 
     Object *light = new Object(lightMesh, lightMat);
-    light->setPosition(glm::vec3(0, halfSize - 0.5f + elevation, 0)); // Slightly below the ceiling
-    light->setRotation(glm::vec3(180, 0, 0));                         // Face down
+    light->setPosition(glm::vec3(0, halfSize - 0.5f + elevation, 0)); 
+    light->setRotation(glm::vec3(180, 0, 0));                       
     light->fixedObject = true;
     this->objects.push_back(light);
 
@@ -453,8 +448,8 @@ MirrorScene::MirrorScene()
     cubeMesh->addCube(1.0f);
 
     cubeMat = new Material();
-    cubeMat->diffuse = glm::vec3(0.7f, 0.1f, 0.1f); // Rouge vif
-    cubeMat->reflectivity = 0.2f;                   // Un peu de reflet de surface
+    cubeMat->diffuse = glm::vec3(0.7f, 0.1f, 0.1f); 
+    cubeMat->reflectivity = 0.2f;                  
     cubeMat->roughness = 0.0f;
     cubeMat->transparency = 0.40f;
     cubeMat->ior = 1.50f;
@@ -462,7 +457,7 @@ MirrorScene::MirrorScene()
     Object *centerCube = new Object(cubeMesh, cubeMat);
     centerCube->setPosition(glm::vec3(0, -halfSize + elevation + 5.0f, -5.0f));
     centerCube->setScale(glm::vec3(5.0f));
-    centerCube->setRotation(glm::vec3(0.0f, 45.0f, 45.0f)); // Penché sur deux axes
+    centerCube->setRotation(glm::vec3(0.0f, 45.0f, 45.0f)); 
     centerCube->setAsBox(5.0f, 5.0f, 5.0f, 1.0f);
     centerCube->fixedObject = true;
     this->addObject(centerCube);
@@ -488,8 +483,8 @@ void MirrorScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, c
 
 DarkScene::DarkScene()
 {
-    this->skyTop = glm::vec3(0.01f, 0.01f, 0.01f);    // Near black
-    this->skyBottom = glm::vec3(0.05f, 0.05f, 0.05f); // Very dark grey
+    this->skyTop = glm::vec3(0.01f, 0.01f, 0.01f);   
+    this->skyBottom = glm::vec3(0.05f, 0.05f, 0.05f);
 
     sphereMesh = Icosahedron::createIcosphere(1.0f, 3);
     planeMesh = new Mesh({}, {});
@@ -526,7 +521,7 @@ DarkScene::DarkScene()
     Object *redMirror = new Object(planeMesh, mirrorMat);
     redMirror->setPosition(glm::vec3(-5, 0, 0));
     redMirror->setRotation(glm::vec3(0, 0, -45)); // Reflects upwards light towards the origin
-    redMirror->setScale(glm::vec3(0.1f));        // 5x5 mirror
+    redMirror->setScale(glm::vec3(0.1f)); 
     redMirror->fixedObject = true;
     this->addObject(redMirror);
 
@@ -595,8 +590,8 @@ void DarkScene::processInput(GLFWwindow *window, const glm::vec3 &cameraPos, con
 
 SeaScene::SeaScene()
 {
-    this->skyTop = glm::vec3(0.1f, 0.2f, 0.4f);    // Deep blue
-    this->skyBottom = glm::vec3(0.8f, 0.4f, 0.1f); // Orange sunrise
+    this->skyTop = glm::vec3(0.1f, 0.2f, 0.4f);  
+    this->skyBottom = glm::vec3(0.8f, 0.4f, 0.1f); 
 
     // Create a high-resolution grid for the sea
     std::vector<Vertex> vertices;

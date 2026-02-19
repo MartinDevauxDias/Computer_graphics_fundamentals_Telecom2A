@@ -154,7 +154,7 @@ void main() {
         vec3 throughput = vec3(1.0);
         const float EPSILON = 0.005;
 
-        for (int bounce = 0; bounce < 5; bounce++) {
+        for (int bounce = 0; bounce < 50; bounce++) {
             float closestT = 1e30;
             int hitObjIdx = -1;
             int hitTriIdx = -1;

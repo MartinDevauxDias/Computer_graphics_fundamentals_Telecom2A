@@ -37,7 +37,6 @@ int main()
         Renderer renderer(window.width, window.height);
         Scene* currentScene = new PhysicsStackScene();
 
-        // Move this declaration outside the loop
         double totalPhysTime = 0.0; 
 
         // Render loop
@@ -89,7 +88,7 @@ int main()
                 double physStart = glfwGetTime();
                 currentScene->step(fixedTimeStep);
                 double physEnd = glfwGetTime();
-                totalPhysTime += (physEnd - physStart); // Accumulate over multiple frames
+                totalPhysTime += (physEnd - physStart);
 
                 timeAccumulator -= fixedTimeStep;
             }
@@ -103,7 +102,7 @@ int main()
             static double lastTime = 0.0;
             frameCount++;
 
-            if (currentFrame - lastTime >= 1.0) { // Update title every second
+            if (currentFrame - lastTime >= 1.0) { 
                 char title[256];
                 sprintf(title, "Raytracer | FPS: %d | Phys: %.2fms | RTPrep: %.2fms", 
                         frameCount, totalPhysTime * 1000.0, rtPrepTime * 1000.0);

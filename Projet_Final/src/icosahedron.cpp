@@ -33,7 +33,7 @@ void Icosahedron::buildIcosahedron(float radius) {
         Vertex v;
         v.position = glm::normalize(p) * radius;
         v.normal = glm::normalize(v.position);
-        v.texCoords = glm::vec2(0.0f); // Could be improved with spherical mapping
+        v.texCoords = glm::vec2(0.0f);
         v.color = glm::vec3(1.0f);
         vertices.push_back(v);
     }
